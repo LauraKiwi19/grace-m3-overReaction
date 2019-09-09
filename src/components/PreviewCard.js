@@ -29,19 +29,6 @@ import Icon from './Icon';
           <Icon aClass='card__social--button js-icon-link-email' aHref='' aTarget='_blank' fontAwesome='fab fas fa-envelope' iconJsClass='js-icon-email' />
           <Icon aClass='card__social--button js-icon-link-linkedin' aHref='' aTarget='_blank' fontAwesome='fab fa-linkedin-in' iconJsClass='js-icon-linkedin' />
           <Icon aClass='card__social--button js-icon-link-github' aHref='' aTarget='_blank' fontAwesome='fab  fa-github-alt' iconJsClass='js-icon-github' />
-
-          <a class="card__social--button">
-            <i class="fas fa-mobile-alt js-icon-phone js-icon-preview"></i>
-          </a>
-          <a class="card__social--button js-icon-link-email" href="" target="_blank">
-            <i class="fab fas fa-envelope js-icon-email js-icon-preview"></i>
-          </a>
-          <a class="card__social--button js-icon-link-linkedin" href="" target="_blank">
-            <i class="fab fa-linkedin-in js-icon-linkedin js-icon-preview "></i>
-          </a>
-          <a class="card__social--button js-icon-link-github" href="" target="_blank">
-            <i class="fab  fa-github-alt js-icon-github js-icon-preview"></i>
-          </a>
         </div>
       </div>
     </div>
