@@ -1,22 +1,24 @@
-import React from 'react';
-import '../scss/App.scss';
+import React from "react";
+import "../scss/App.scss";
 // import Collapsible from "./Collapsible";
-import Share from './Share';
+import Share from "./Share";
+import Design from "./Design";
 import Form from './Form';
 import PreviewCard from './PreviewCard';
+
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      openSection: '',
+      openSection: "",
       readyToCreateCard: false,
       cardShare: {
-        link: 'https://awesome-profile-card.com?id=A456DF0001',
-        linkDisplay: 'none',
-        linkTitle: '',
-        twitterLink: 'https://twitter.com/'
+        link: "https://awesome-profile-card.com?id=A456DF0001",
+        linkDisplay: "none",
+        linkTitle: "",
+        twitterLink: "https://twitter.com/"
       }
     };
 
@@ -24,7 +26,7 @@ class App extends React.Component {
   }
 
   changeShareBtnColor = () => {
-    return this.state.readyToCreateCard === true ? '#e17334' : 'lightgrey';
+    return this.state.readyToCreateCard === true ? "#e17334" : "lightgrey";
   };
 
   handleCreateCardClick = () => {
@@ -49,6 +51,8 @@ class App extends React.Component {
       <div className='App'>
         <PreviewCard />
         <form class="js-form form">
+          
+        <Design />
            <Form />
           <Share
             shareBtnColor={this.changeShareBtnColor()}
