@@ -1,19 +1,16 @@
 import React from 'react';
 import SocialIcons from './SocialIcons';
+import ResetButton from './Reset';
 
 
 class PreviewCard extends React.Component{
-  render(){
+
+ render(){
     return(
       <section class="sectiona__main">
         <div class="sectiona__main--container">
           <div class="main__button--container">
-            <button class="js-sectiona__buton sectiona__button">
-              
-              {/* <p class="sectiona__button--text">
-                <i class="fas fa-mobile-alt"><span class="reset"> reset</span></i>
-              </p> */}
-            </button>
+          <ResetButton />
           </div>
           <div class="card js-palettecontainer">
             <div class="preview__bio">
