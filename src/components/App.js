@@ -2,6 +2,7 @@ import React from 'react';
 import '../scss/App.scss';
 // import Collapsible from "./Collapsible";
 import Share from './Share';
+import PreviewCard from './PreviewCard';
 
 class App extends React.Component {
   constructor() {
@@ -45,7 +46,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='App'>
-                
+        <PreviewCard />        
         <Share
           shareBtnColor={this.changeShareBtnColor()}
           createCard={this.handleCreateCardClick}
