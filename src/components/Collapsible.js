@@ -1,29 +1,53 @@
 import React from "react";
 
-function Collapsible(props) {
+class Collapsible extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      open: false
+    }
+    this.toggle = this.toggle.bind(this)
+  }
   // const onClick = e => {
   //   props.collapsible
   // }
   /* eslint-disable strict */
-  const collapsibleTriggers = document.querySelectorAll(
-    ".js-collapsible__trigger"
-  );
+  // const collapsibleTriggers = document.querySelectorAll(
+  //   ".js-collapsible__trigger"
+  // );
 
-  function updateCollapsible(event) {
-    const currentCollapsible = event.currentTarget.parentElement;
+  // function updateCollapsible(event) {
+  //   const currentCollapsible = event.currentTarget.parentElement;
 
-    if (currentCollapsible.classList.contains("js-collapsible--open")) {
-      currentCollapsible.classList.remove("js-collapsible--open");
-    } else {
-      for (const item of collapsibleTriggers) {
-        item.parentElement.classList.remove("js-collapsible--open");
+  //   if (currentCollapsible.classList.contains("js-collapsible--open")) {
+  //     currentCollapsible.classList.remove("js-collapsible--open");
+  //   } else {
+  //     for (const item of collapsibleTriggers) {
+  //       item.parentElement.classList.remove("js-collapsible--open");
+  //     }
+  //     currentCollapsible.classList.add("js-collapsible--open");
+  //   }
+  // } // for (const item of collapsibleTriggers) { //   item.addEventListener("click", updateCollapsible); // }
+  toggle() {
+    this.setState(prevState => {
+      return {
+        open: !prevState.open
       }
-      currentCollapsible.classList.add("js-collapsible--open");
-    }
-  } // for (const item of collapsibleTriggers) { //   item.addEventListener("click", updateCollapsible); // }
-
+    })
+  }
+  render () {
+  const mainClassName = this.state.open === true ? 'collapsible-open' : '';
   return (
-    <div className={props.sectionName}>
+    <div className={mainClassName}>
+      <div>
+        Share
+        <span onClick={this.toggle}>ARROW</span>
+      </div>
+      <div className="collapsible-content">
+        {this.props.children}
+      </div>
+
+    {/*<div className={props.sectionName}>
       <div
         className="container__title js-collapsible__trigger"
         onClick={updateCollapsible}
@@ -39,8 +63,10 @@ function Collapsible(props) {
         </div>
       </div>
         {props.children}
+  </div>*/}
     </div>
   );
+}
 }
 
 export default Collapsible;
