@@ -2,24 +2,36 @@ import React from 'react';
 import Collapsible from './Collapsible';
 
 
-{/* 
-
-
-<div class="phone">
-<label class="form__item" for="phone">Teléfono</label>
-<input class="item__input js-input-phone" type="tel" id="phone" name="phone" placeholder="Ej: 555-55-55-55" />
-</div>  */}
 
 
 class Form extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            content: ""
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        debugger;
+        const text = event.target.value
+
+        this.setState({
+            content: `${text}`
+        });
+
+    }
     render() {
+        debugger;
         const asterisk = <span className="asterisk">*</span>;
         return (
             <div className="fillin">
                 <Collapsible />
                 <div className="name" /*Este DIV debería ser otro componente mas?*/>
                     <Label htmlFor="name" text="Nombre Completo" asterisk={asterisk} />
-                    <Input inputClass="item__input" id="name" type="text" name="name" placeholder="Ej: Sally Jill" required="required" />
+                    <Input onChange={this.onChange} inputClass="item__input" id="name" type="text" name="name" placeholder="Ej: Sally Jill" required="required" />
+                    <p>{this.state.value}oli</p>
                 </div>
                 <div className="job">
                     <Label htmlFor="job" text="Puesto" asterisk={asterisk} />
@@ -58,7 +70,7 @@ class Label extends React.Component {
 class Input extends React.Component {
     render() {
         return (
-            <input className={this.props.inputClass} id={this.props.id} type={this.props.type} name={this.props.name} placeholder={this.props.placeholder} required={this.props.required} />
+            <input onChange={this.handleChange} className={this.props.inputClass} value={this.props.value} id={this.props.id} type={this.props.type} name={this.props.name} placeholder={this.props.placeholder} required={this.props.required} />
         )
     }
 }
