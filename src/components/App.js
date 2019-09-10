@@ -48,17 +48,18 @@ class App extends React.Component {
     return (
       <div className='App'>
         <PreviewCard />
-        <Form />
-        <Share
-          shareBtnColor={this.changeShareBtnColor()}
-          createCard={this.handleCreateCardClick}
-          generatedCard={this.state.cardShare}
-        />
-
+        <form class="js-form form">
+           <Form />
+          <Share
+            shareBtnColor={this.changeShareBtnColor()}
+            createCard={this.handleCreateCardClick}
+            generatedCard={this.state.cardShare}
+          />
+        </form>
       </div>
     );
   }
->>>>>>> dev
+
 }
 
 export default App;
