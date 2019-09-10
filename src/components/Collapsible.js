@@ -1,10 +1,10 @@
 import React from "react";
 
 function Collapsible(props) {
-  // const onClick = e => {
-  //   props.collapsible
-  // }
-  /* eslint-disable strict */
+  // const onClick = e => {
+  //   props.collapsible
+  // }
+  /* eslint-disable strict */
   const collapsibleTriggers = document.querySelectorAll(
     ".js-collapsible__trigger"
   );
@@ -20,22 +20,25 @@ function Collapsible(props) {
       }
       currentCollapsible.classList.add("js-collapsible--open");
     }
-  }
+  } // for (const item of collapsibleTriggers) { //   item.addEventListener("click", updateCollapsible); // }
 
-  // for (const item of collapsibleTriggers) {
-  //   item.addEventListener("click", updateCollapsible);
-  // }
   return (
-    <div className="container__title js-collapsible__trigger" onClick={updateCollapsible}>
-      <div className="title__items">
-        <div>
-          <i className="title__items__ico far fa-object-ungroup far"></i>
+    <div className={props.sectionName}>
+      <div
+        className="container__title js-collapsible__trigger"
+        onClick={updateCollapsible}
+      >
+        <div className="title__items">
+          <div>
+            <i className="title__items__ico far fa-object-ungroup far"></i>
+          </div>
+             <h2 className="title">{props.sectionName}</h2>
         </div>
-        <h2 className="title">{props.sectionName}</h2>
+        <div className="js-ico">
+          <i className="fas fa-angle-up"></i>
+        </div>
       </div>
-      <div className="js-ico">
-        <i className="fas fa-angle-up"></i>
-      </div>
+        {props.children}
     </div>
   );
 }
