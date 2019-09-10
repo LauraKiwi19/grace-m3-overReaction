@@ -9,7 +9,7 @@ class ResetButton extends React.Component {
         id='reset'
       >
         <p className='sectiona__button--text'>
-          <i className='fas fa-mobile-alt'>
+          <i className='far fa-trash-alt'>
             <span className='reset'> reset</span>
           </i>
         </p>
