@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
 // import '../scss/App.scss';
-import Collapsible from './Collapsible'
-import Share from './Share';
+import Design from "./Design";
+import Share from "./Share";
 
 function App() {
   return (
     <div className="App">
-      <Share/>
+      <Design />
+      <Share />
     </div>
   );
 }
