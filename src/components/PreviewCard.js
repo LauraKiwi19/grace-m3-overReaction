@@ -1,19 +1,39 @@
 import React from 'react';
-import Icon from './Icon';
+import SocialIcons from './SocialIcons';
 
-class SocialIcons extends React.Component{
+
+class PreviewCard extends React.Component{
   render(){
     return(
-    <div className="card__social">
-      <div className="card__social--div">
-        <Icon aClass='card__social--button' aHref='' aTarget='_blank' fontAwesome='fas fa-mobile-alt' iconJsClass='js-icon-phone' />
-        <Icon aClass='card__social--button js-icon-link-email' aHref='' aTarget='_blank' fontAwesome='fab fas fa-envelope' iconJsClass='js-icon-email' />
-        <Icon aClass='card__social--button js-icon-link-linkedin' aHref='' aTarget='_blank' fontAwesome='fab fa-linkedin-in' iconJsClass='js-icon-linkedin' />
-        <Icon aClass='card__social--button js-icon-link-github' aHref='' aTarget='_blank' fontAwesome='fab  fa-github-alt' iconJsClass='js-icon-github' />
-      </div>
-    </div>
+      <section class="sectiona__main">
+        <div class="sectiona__main--container">
+          <div class="main__button--container">
+            <button class="js-sectiona__buton sectiona__button">
+              
+              {/* <p class="sectiona__button--text">
+                <i class="fas fa-mobile-alt"><span class="reset"> reset</span></i>
+              </p> */}
+            </button>
+          </div>
+          <div class="card js-palettecontainer">
+            <div class="preview__bio">
+              <div class="preview__bio--rectangle "></div>
+              <div class="preview__bio--div">
+                <div class="js-typocontainer">
+                  <h2 class="preview__bio--name js-box1_result">Nombre Apellido</h2>
+                  <h3 class="preview__bio--job js-preview__job">Front-end developer</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="js-card__image card__image" alt="photo card"></div>
+            <SocialIcons />
+            </div>
+        </div>
+      </section>
     );
   }
 }
 
-export default SocialIcons;
+export default PreviewCard;
+
