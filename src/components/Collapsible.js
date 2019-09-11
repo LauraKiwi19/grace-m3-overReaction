@@ -1,72 +1,48 @@
 import React from "react";
 
 class Collapsible extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       open: false
-    }
-    this.toggle = this.toggle.bind(this)
+    };
+    this.handleCollapsableClick = this.handleCollapsableClick.bind(this);
   }
-  // const onClick = e => {
-  //   props.collapsible
-  // }
-  /* eslint-disable strict */
-  // const collapsibleTriggers = document.querySelectorAll(
-  //   ".js-collapsible__trigger"
-  // );
 
-  // function updateCollapsible(event) {
-  //   const currentCollapsible = event.currentTarget.parentElement;
-
-  //   if (currentCollapsible.classList.contains("js-collapsible--open")) {
-  //     currentCollapsible.classList.remove("js-collapsible--open");
-  //   } else {
-  //     for (const item of collapsibleTriggers) {
-  //       item.parentElement.classList.remove("js-collapsible--open");
-  //     }
-  //     currentCollapsible.classList.add("js-collapsible--open");
-  //   }
-  // } // for (const item of collapsibleTriggers) { //   item.addEventListener("click", updateCollapsible); // }
-  toggle() {
+  handleCollapsableClick() {
     this.setState(prevState => {
       return {
         open: !prevState.open
-      }
-    })
+      };
+    });
   }
-  render () {
-  const mainClassName = this.state.open === true ? 'collapsible-open' : '';
-  return (
-    <div className={mainClassName}>
-      <div>
-        Share
-        <span onClick={this.toggle}>ARROW</span>
-      </div>
-      <div className="collapsible-content">
-        {this.props.children}
-      </div>
 
-    {/*<div className={props.sectionName}>
-      <div
-        className="container__title js-collapsible__trigger"
-        onClick={updateCollapsible}
-      >
-        <div className="title__items">
-          <div>
-            <i className="title__items__ico far fa-object-ungroup far"></i>
+  render() {
+    const mainClassName =
+      this.state.open === true ? "js-collapsible__content" : "";
+
+    return (
+      <div className={this.props.sectionName}>
+        <div
+          className="container__title js-collapsible__trigger"
+          onClick={this.handleCollapsableClick}
+        >
+          <div className="title__items">
+            <div>
+              <i className="title__items__ico far fa-object-ungroup far"></i>
+            </div>
+               <h2 className="title">{this.props.sectionName}</h2>
           </div>
-             <h2 className="title">{props.sectionName}</h2>
+          <div className="js-ico">
+            <i className="fas fa-angle-up"></i>
+          </div>
         </div>
-        <div className="js-ico">
-          <i className="fas fa-angle-up"></i>
+        <div className={mainClassName}>
+        {this.props.children}
         </div>
       </div>
-        {props.children}
-  </div>*/}
-    </div>
-  );
-}
+    );
+  }
 }
 
 export default Collapsible;

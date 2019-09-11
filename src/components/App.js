@@ -3,9 +3,8 @@ import "../scss/App.scss";
 // import Collapsible from "./Collapsible";
 import Share from "./Share";
 import Design from "./Design";
-import Form from './Form';
-import PreviewCard from './PreviewCard';
-
+import Form from "./Form";
+import PreviewCard from "./PreviewCard";
 
 class App extends React.Component {
   constructor() {
@@ -32,28 +31,27 @@ class App extends React.Component {
   handleCreateCardClick = () => {
     return this.state.readyToCreateCard === true
       ? this.setState(() => {
-        return {
-          cardShare: {
-            ...this.state.cardShare,
-            link:
-              'https://awesome-profile-card.com?id=A456DF0001/createdLink',
-            linkDisplay: 'flex',
-            linkTitle: 'La tarjeta ha sido creada:',
-            twitterLink: 'https://twitter.com/'
-          }
-        };
-      })
+          return {
+            cardShare: {
+              ...this.state.cardShare,
+              link:
+                "https://awesome-profile-card.com?id=A456DF0001/createdLink",
+              linkDisplay: "flex",
+              linkTitle: "La tarjeta ha sido creada:",
+              twitterLink: "https://twitter.com/"
+            }
+          };
+        })
       : null;
   };
 
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <PreviewCard />
         <form class="js-form form">
-          
-        <Design />
-           <Form />
+          <Design />
+          <Form />
           <Share
             shareBtnColor={this.changeShareBtnColor()}
             createCard={this.handleCreateCardClick}
@@ -63,7 +61,6 @@ class App extends React.Component {
       </div>
     );
   }
-
 }
 
 export default App;
