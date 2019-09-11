@@ -31,7 +31,7 @@ class Form extends React.Component {
                 <div className="name" /*Este DIV debería ser otro componente mas?*/>
                     <Label htmlFor="name" text="Nombre Completo" asterisk={asterisk} />
                     <Input onChange={this.onChange} inputClass="item__input" id="name" type="text" name="name" placeholder="Ej: Sally Jill" required="required" />
-                    <p>{this.state.value}oli</p>
+                    <p>{this.state.value}</p>
                 </div>
                 <div className="job">
                     <Label htmlFor="job" text="Puesto" asterisk={asterisk} />
