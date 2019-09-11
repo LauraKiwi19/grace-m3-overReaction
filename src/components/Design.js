@@ -1,10 +1,11 @@
 import React from "react";
 import ColorPalette from "./Palette";
+import Collapsible from "./Collapsible";
 
 class Design extends React.Component {
   render() {
     return (
-      <div className="js-collapsible__content content">
+      <Collapsible sectionName="Diseña" icon='fas fa-share-alt'>
         <div>
           <div className="colors ">
             <h3 className="colors_h3">colores</h3>
@@ -33,7 +34,7 @@ class Design extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </Collapsible>
     );
   }
 }

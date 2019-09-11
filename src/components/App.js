@@ -12,7 +12,7 @@ class App extends React.Component {
 
     this.state = {
       openSection: "",
-      readyToCreateCard: false,
+      readyToCreateCard: true,
       cardShare: {
         link: "https://awesome-profile-card.com?id=A456DF0001",
         linkDisplay: "none",
