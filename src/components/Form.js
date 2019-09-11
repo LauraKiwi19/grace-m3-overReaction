@@ -14,7 +14,6 @@ class Form extends React.Component {
     }
 
     handleChange(event) {
-        debugger;
         const text = event.target.value
 
         this.setState({
@@ -23,7 +22,6 @@ class Form extends React.Component {
 
     }
     render() {
-        debugger;
         const asterisk = <span className="asterisk">*</span>;
         return (
             <div className="fillin">

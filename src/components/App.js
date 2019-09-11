@@ -47,8 +47,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="section__container">
+        <div className="section__container__a">
         <PreviewCard />
+        </div>
+        <div className="section__container__b">
         <form class="js-form form">
           <Design />
           <Form />
@@ -58,6 +61,7 @@ class App extends React.Component {
             generatedCard={this.state.cardShare}
           />
         </form>
+        </div>
       </div>
     );
   }

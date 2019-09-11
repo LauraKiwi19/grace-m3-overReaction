@@ -5,7 +5,7 @@ const Share = props => {
   const generatedCard = props.generatedCard;
   const { link, linkDisplay, linkTitle, twitterLink } = generatedCard;
   return (
-    <Collapsible sectionName="Share">
+    <Collapsible sectionName="Comparte" icon='fas fa-share-alt'>
 
         <div className="share__button">
           <button
@@ -13,8 +13,8 @@ const Share = props => {
             style={{ background: props.shareBtnColor }}
             onClick={props.createCard}
           >
-            <i className="far fa-address-card"></i>
-            CREAR TARJETA
+            <i className="far fa-address-card"></i>
+            CREAR TARJETA
           </button>
         </div>
         <div className="created_card" style={{ display: linkDisplay }}>
