@@ -52,7 +52,7 @@ class App extends React.Component {
         <PreviewCard />
         </div>
         <div className="section__container__b">
-        <form class="js-form form">
+        <form className="js-form form">
           <Design />
           <Form />
           <Share

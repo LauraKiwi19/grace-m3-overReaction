@@ -11,6 +11,7 @@ class Form extends React.Component {
   }
 
   handleChange(event) {
+    debugger;
     const text = event.target.value;
 
     this.setState({
@@ -20,9 +21,9 @@ class Form extends React.Component {
   render() {
     const asterisk = <span className="asterisk">*</span>;
     return (
-        <Collapsible sectionName="Rellena" icon='fas fa-share-alt'>
-          <div className="fillin">
-        <div className="name" /*Este DIV debería ser otro componente mas?*/>
+      <div className="fillin">
+        <Collapsible sectionName="Rellena" icon="fas fa-share-alt" />
+        <div className="name">
           <Label htmlFor="name" text="Nombre Completo" asterisk={asterisk} />
           <Input
             onChange={this.onChange}
@@ -33,7 +34,7 @@ class Form extends React.Component {
             placeholder="Ej: Sally Jill"
             required="required"
           />
-          <p>{this.state.value}oli</p>
+          <p>{this.state.value}</p>
         </div>
         <div className="job">
           <Label htmlFor="job" text="Puesto" asterisk={asterisk} />
@@ -61,7 +62,7 @@ class Form extends React.Component {
               htmlFor="files"
               text="Añadir imagen"
             />
-            <img class="js-preview js-photo preview" />
+            <img className="js-preview js-photo preview" alt='imagen'/>
           </div>
         </div>
         <div className="email">
@@ -86,7 +87,6 @@ class Form extends React.Component {
           />
         </div>
       </div>
-      </Collapsible>
     );
   }
 }
