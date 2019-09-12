@@ -4,7 +4,7 @@ import Collapsible from "./Collapsible";
 
 function Design() {
   return (
-    <Collapsible sectionName="Diseña" icon="fa-fa">
+    <Collapsible sectionName="Diseña" icon="fa-object-ungroup far">
       <div>
         <div className="colors ">
           <h3 className="colors_h3">colores</h3>
