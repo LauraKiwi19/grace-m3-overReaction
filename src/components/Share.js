@@ -6,7 +6,7 @@ const Share = props => {
   const { link, linkDisplay, linkTitle, twitterLink } = generatedCard;
   return (
     <Collapsible sectionName="Share">
-      <div className="js-collapsible__content content">
+
         <div className="share__button">
           <button
             className="share__btn"
@@ -36,7 +36,7 @@ const Share = props => {
             Compartir en Twitter
           </a>
         </div>
-      </div>
+  
     </Collapsible>
   );
 };
