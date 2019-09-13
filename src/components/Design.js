@@ -2,7 +2,7 @@ import React from "react";
 import ColorPalette from "./Palette";
 import Collapsible from "./Collapsible";
 
-function Design() {
+function Design(props) {
   return (
     <Collapsible sectionName="Diseña" icon="fa-object-ungroup far">
       <div>
@@ -15,6 +15,7 @@ function Design() {
               number1="box__color1 js-box__color1"
               number2="box__color2 js-box__color2"
               number3="box__color3 js-box__color3"
+              handlePalette={props.getPaletteId}
             />
             <ColorPalette
               value="2"

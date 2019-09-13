@@ -19,6 +19,8 @@ class App extends React.Component {
         linkTitle: "",
         twitterLink: "https://twitter.com/"
       }
+      paletteId: "1",
+
     };
 
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
@@ -31,29 +33,33 @@ class App extends React.Component {
   handleCreateCardClick = () => {
     return this.state.readyToCreateCard === true
       ? this.setState(() => {
-          return {
-            cardShare: {
-              ...this.state.cardShare,
-              link:
-                "https://awesome-profile-card.com?id=A456DF0001/createdLink",
-              linkDisplay: "flex",
-              linkTitle: "La tarjeta ha sido creada:",
-              twitterLink: "https://twitter.com/"
-            }
-          };
-        })
+        return {
+          cardShare: {
+            ...this.state.cardShare,
+            link:
+              "https://awesome-profile-card.com?id=A456DF0001/createdLink",
+            linkDisplay: "flex",
+            linkTitle: "La tarjeta ha sido creada:",
+            twitterLink: "https://twitter.com/"
+          }
+        };
+      })
       : null;
   };
-
-  render() {
-    return (
-      <div className="section__container">
-        <div className="section__container__a">
+  function getPaletteId(id) {
+  return this.SetState(({
+    paleteId: id,
+  }))
+}
+render() {
+  return (
+    <div className="section__container">
+      <div className="section__container__a">
         <PreviewCard />
-        </div>
-        <div className="section__container__b">
+      </div>
+      <div className="section__container__b">
         <form className="js-form form">
-          <Design />
+          <Design getPaletteId={getPaletteId} />
           <Form />
           <Share
             shareBtnColor={this.changeShareBtnColor()}
@@ -61,10 +67,10 @@ class App extends React.Component {
             generatedCard={this.state.cardShare}
           />
         </form>
-        </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 export default App;
