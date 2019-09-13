@@ -12,7 +12,7 @@ class App extends React.Component {
 
     this.state = {
       openSection: "",
-      readyToCreateCard: false,
+      readyToCreateCard: true,
       cardShare: {
         link: "https://awesome-profile-card.com?id=A456DF0001",
         linkDisplay: "none",
@@ -47,9 +47,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="section__container">
+        <div className="section__container__a">
         <PreviewCard />
-        <form class="js-form form">
+        </div>
+        <div className="section__container__b">
+        <form className="js-form form">
           <Design />
           <Form />
           <Share
@@ -58,6 +61,7 @@ class App extends React.Component {
             generatedCard={this.state.cardShare}
           />
         </form>
+        </div>
       </div>
     );
   }
