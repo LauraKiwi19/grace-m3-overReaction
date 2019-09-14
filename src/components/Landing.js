@@ -26,7 +26,7 @@ class Landing extends React.Component {
                 <small className='icon_text'>Rellena</small>
               </div>
               <div class='icon_box'>
-                <i className='fas fa-share-alt'></i>
+                <i className='far fa-share-alt'></i>
                 <small className='icon_text'>Comparte</small>
               </div>
             </div>
