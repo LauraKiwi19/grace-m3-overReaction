@@ -19,27 +19,25 @@ class Collapsible extends React.Component {
 
   render() {
     const mainClassName =
-      this.state.open === true ? "js-collapsible__content" : "";
+      this.state.open === false ? "js-collapsible__content" : "";
 
     return (
       <div className={this.props.sectionName}>
         <div
-          className="container__title js-collapsible__trigger"
+          className="container__title js-collapsible__trigger"
           onClick={this.handleCollapsableClick}
         >
           <div className="title__items">
             <div>
-              <i className="title__items__ico far fa-object-ungroup far"></i>
+              <i className={`title__items__ico ${this.props.icon}`}></i>
             </div>
-               <h2 className="title">{this.props.sectionName}</h2>
+            <h2 className="title">{this.props.sectionName}</h2>
           </div>
           <div className="js-ico">
-            <i className="fas fa-angle-up"></i>
+            <i className="fas fa-angle-up"></i>
           </div>
         </div>
-        <div className={mainClassName}>
-        {this.props.children}
-        </div>
+        <div className={`${mainClassName} content`}>{this.props.children}</div>
       </div>
     );
   }
