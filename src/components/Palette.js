@@ -3,8 +3,13 @@ import React from "react";
 
 
 class ColorPalette extends React.Component {
-  handlePaletteClicked(props) {
-    this.props.handlePalette(this.props.id)
+  constructor(props){
+    super(props);
+    this.handlePaletteClicked = this.handlePaletteClicked.bind(this)
+  }
+  handlePaletteClicked = (props) => {
+    console.log('he clickado paleta', this.props.id)
+    return this.props.handlePalette(this.props.id)
   }
   render() {
     return (
