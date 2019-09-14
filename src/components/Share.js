@@ -1,5 +1,6 @@
 import React from "react";
 import Collapsible from "./Collapsible";
+import '../scss/layout/_share.scss';
 
 const Share = props => {
   const generatedCard = props.generatedCard;
