@@ -31,6 +31,8 @@ class App extends React.Component {
     };
 
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    this.getPaletteId = this.getPaletteId.bind(this);
+    this.getInputValues = this.getInputValues.bind(this);
   }
 
   changeShareBtnColor = () => {
