@@ -19,7 +19,7 @@ class App extends React.Component {
         linkTitle: '',
         twitterLink: 'https://twitter.com/'
       },
-      paletteId: 1,
+      palette: 1,
       userInputs: {
         name: '',
         job: '',
@@ -63,7 +63,7 @@ class App extends React.Component {
     this.setState(() => {
       const newPaletteId = id;
       return {
-        paletteId: newPaletteId
+        palette: newPaletteId
       };
     });
   };
@@ -89,7 +89,7 @@ class App extends React.Component {
       name,
       phone,
     } = props.userInputs;
-    const palette = props.paletteId;
+    const palette = props.palette;
     const userData = {
       email: email,
       github: github,
