@@ -20,73 +20,81 @@ class Form extends React.Component {
   render() {
     const asterisk = <span className="asterisk">*</span>;
     return (
-        <Collapsible sectionName="Rellena" icon='fas fa-share-alt'>
-      <div className="fillin">
-        <div className="name" /*Este DIV debería ser otro componente mas?*/>
-          <Label htmlFor="name" text="Nombre Completo" asterisk={asterisk} />
-          <Input
-            onChange={this.onChange}
-            inputClass="item__input"
-            id="name"
-            type="text"
-            name="name"
-            placeholder="Ej: Sally Jill"
-            required="required"
-          />
-          <p>{this.state.value}</p>
-        </div>
-        <div className="job">
-          <Label htmlFor="job" text="Puesto" asterisk={asterisk} />
-          <Input
-            inputClass="item__input js-input-job"
-            id="job"
-            type="text"
-            name="name"
-            placeholder="Ej: Front-end unicorn"
-            required="required"
-          />
-        </div>
-        <div className="photo">
-          <Label htmlFor="photo" text="Imagen de Perfil" asterisk={asterisk} />
-          <div className="photo__container">
+      <Collapsible sectionName="Rellena" icon='fas far fa-keyboard'>
+        <div className="fillin">
+          <div className="name" /*Este DIV debería ser otro componente mas?*/>
+            <Label htmlFor="name" text="Nombre Completo" asterisk={asterisk} />
             <Input
-              inputClass="js-form__photo form__photo"
-              id="files"
-              type="file"
-              name="photo"
+              onChange={this.onChange}
+              inputClass="item__input"
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Ej: Sally Jill"
               required="required"
             />
-            <Label
-              className="image__btn"
-              htmlFor="files"
-              text="Añadir imagen"
+            <p>{this.state.value}</p>
+          </div>
+          <div className="job">
+            <Label htmlFor="job" text="Puesto" asterisk={asterisk} />
+            <Input
+              inputClass="item__input js-input-job"
+              id="job"
+              type="text"
+              name="name"
+              placeholder="Ej: Front-end unicorn"
+              required="required"
             />
-            <img className="js-preview js-photo preview" alt='imagen'/>
+          </div>
+          <div className="photo">
+            <Label htmlFor="photo" text="Imagen de Perfil" asterisk={asterisk} />
+            <div className="photo__container">
+              <Input
+                inputClass="js-form__photo form__photo"
+                id="files"
+                type="file"
+                name="photo"
+                required="required"
+              />
+              <Label
+                className="image__btn"
+                htmlFor="files"
+                text="Añadir imagen"
+              />
+              <img className="js-preview js-photo preview" alt='imagen' />
+            </div>
+          </div>
+          <div className="email">
+            <Label htmlFor="email" text="Email" asterisk={asterisk} />
+            <Input
+              inputClass="item__input js-input-email"
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Ej: sally-hill@gmail.com"
+              required="required"
+            />
+          </div>
+          <div className="phone">
+            <Label htmlFor="phone" text="Teléfono" />
+            <Input
+              inputClass="item__input js-input-phone"
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Ej: 555-55-55-55"
+            />
+          </div>
+          <div className="linkedin">
+            <Label htmlFor="linkedin" text="Linkedin" asterisk={asterisk} />
+            <Input inputClass="item__input js-input-linkedin" type="text" id="linkedin" name="linkedin" placeholder="Ej: linkedin.com/in/sally.hill" />
+          </div>
+          <div className="github">
+            <Label htmlFor="github" text="Github" asterisk={asterisk} />
+            <Input inputClass="item__input js-input-github" type="text" id="github" name="github" placeholder="Ej: @sally-hill" />
           </div>
         </div>
-        <div className="email">
-          <Label htmlFor="email" text="Email" asterisk={asterisk} />
-          <Input
-            inputClass="item__input js-input-email"
-            id="email"
-            type="email"
-            name="email"
-            placeholder="Ej: sally-hill@gmail.com"
-            required="required"
-          />
-        </div>
-        <div className="phone">
-          <Label htmlFor="phone" text="Teléfono" />
-          <Input
-            inputClass="item__input js-input-phone"
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Ej: 555-55-55-55"
-          />
-        </div>
-      </div>
-      </Collapsible>
+      </Collapsible >
     );
   }
 }
