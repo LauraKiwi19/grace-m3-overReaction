@@ -5,6 +5,9 @@ import Share from "./Share";
 import Design from "./Design";
 import Form from "./Form";
 import PreviewCard from "./PreviewCard";
+import defaultPicture from "./../images/default.jpg";
+
+
 
 class App extends React.Component {
   constructor() {
@@ -18,11 +21,29 @@ class App extends React.Component {
         linkDisplay: "none",
         linkTitle: "",
         twitterLink: "https://twitter.com/"
-      }
+      },
+
+      isDefaultPicture: true,
+      picture: defaultPicture
 
     };
 
+    this.updateProfilePicture = this.updateProfilePicture.bind(this)
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+  }
+
+  updateProfilePicture(img) {
+    console.log("holi")
+    console.log(img)
+    debugger;
+    this.setState(prevState => {
+
+      //const newProfile = { ...prevState, picture: img };
+      return {
+        picture: img,
+        isDefaultPicture: false
+      }
+    })
   }
 
   changeShareBtnColor = () => {
@@ -55,7 +76,7 @@ class App extends React.Component {
         <div className="section__container__b">
           <form className="js-form form">
             <Design />
-            <Form />
+            <Form isDefaultPicture={this.state.isDefaultPicture} picture={this.state.picture} updateProfilePicture={this.updateProfilePicture} />
             <Share
               shareBtnColor={this.changeShareBtnColor()}
               createCard={this.handleCreateCardClick}

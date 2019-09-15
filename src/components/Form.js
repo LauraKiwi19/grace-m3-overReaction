@@ -1,9 +1,10 @@
 import React from 'react';
 import Collapsible from './Collapsible';
+import Label from './Label'
+import Input from './Input'
+import GetAvatar from './GetAvatar'
 
-
-
-function Form() {
+function Form(props) {
   const asterisk = <span className="asterisk">*</span>;
   return (
     <Collapsible sectionName="Rellena" icon="far fa-keyboard">
@@ -18,11 +19,7 @@ function Form() {
         </div>
         <div className="photo">
           <Label className="form__item" htmlFor="photo" text="Imagen de Perfil" asterisk={asterisk} />
-          <div className="photo__container">
-            <Input inputClass="js-form__photo form__photo" id="files" type="file" name="photo" required="required" />
-            <Label className="image__btn" htmlFor="files" text="Añadir imagen" />
-            <img class="js-preview js-photo preview" />
-          </div>
+          <GetAvatar isDefaultPicture={props.isDefaultPicture} picture={props.picture} updateProfilePicture={props.updateProfilePicture} />
         </div>
         <div className="email">
           <Label className="form__item" htmlFor="email" text="Email" asterisk={asterisk} />
@@ -42,34 +39,6 @@ function Form() {
         </div>
       </div>
     </Collapsible>)
-}
-
-class Label extends React.Component {
-  render() {
-    return (
-      <label className={this.props.className} htmlFor={this.props.htmlFor}>
-        {" "}
-        {this.props.text} {this.props.asterisk}
-      </label>
-    );
-  }
-}
-
-class Input extends React.Component {
-  render() {
-    return (
-      <input
-        onChange={this.handleChange}
-        className={this.props.inputClass}
-        value={this.props.value}
-        id={this.props.id}
-        type={this.props.type}
-        name={this.props.name}
-        placeholder={this.props.placeholder}
-        required={this.props.required}
-      />
-    );
-  }
 }
 
 export default Form;
