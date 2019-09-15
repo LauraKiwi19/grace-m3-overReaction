@@ -20,7 +20,14 @@ class App extends React.Component {
         twitterLink: 'https://twitter.com/'
       },
       paletteId: 1,
-      fullName: ''
+      userInputs: {
+					name: '',
+					job: '',
+					phone: '',
+					email: '',
+					linkedin: '',
+					github: '',
+			},
     };
 
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
@@ -54,15 +61,19 @@ class App extends React.Component {
       };
     });
   };
-  getInputValues = value => {
-    this.setState(()=>{
-      const newInputValue = value;
+  getInputValues = (name, value) => {
+    const stateAttribute = name;
+    const inputValue = value;
+    this.setState((prevState)=>{
       return {
-        fullName : newInputValue,
+        userInputs: {
+					...prevState.userInputs,
+					[stateAttribute]: inputValue
+				}
       };
     });
   };
-
+ 
   render() {
     return (
       <div className="section__container">
@@ -80,7 +91,7 @@ class App extends React.Component {
             />
           </form>
         </div>
-      </div>
+      </div >
     );
   }
 }
