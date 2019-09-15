@@ -21,16 +21,19 @@ class App extends React.Component {
       },
       paletteId: 1,
       userInputs: {
-					name: '',
-					job: '',
-					phone: '',
-					email: '',
-					linkedin: '',
-					github: '',
-			},
+        name: '',
+        job: '',
+        phone: '',
+        email: '',
+        linkedin: '',
+        github: ''
+      }
     };
 
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
+    this.getPaletteId = this.getPaletteId.bind(this);
+    this.getInputValues = this.getInputValues.bind(this);
   }
 
   changeShareBtnColor = () => {
@@ -53,7 +56,7 @@ class App extends React.Component {
         })
       : null;
   };
-  
+
   //functions for getting and saving user's inputs into state
 
   getPaletteId = id => {
@@ -68,26 +71,28 @@ class App extends React.Component {
   getInputValues = (name, value) => {
     const stateAttribute = name;
     const inputValue = value;
-    this.setState((prevState)=>{
+    this.setState(prevState => {
       return {
         userInputs: {
-					...prevState.userInputs,
-					[stateAttribute]: inputValue
-				}
+          ...prevState.userInputs,
+          [stateAttribute]: inputValue
+        }
       };
     });
   };
- 
+  setLocalStorage = props => {};
+
   render() {
+    this.setLocalStorage(this.state);
     return (
       <div className="section__container">
         <div className="section__container__a">
-          <PreviewCard userInputs={this.state.userInputs}/>
+          <PreviewCard userInputs={this.state.userInputs} />
         </div>
         <div className="section__container__b">
           <form className="js-form form">
             <Design getPaletteId={this.getPaletteId} />
-            <Form getInputValues={this.getInputValues}/>
+            <Form getInputValues={this.getInputValues} />
             <Share
               shareBtnColor={this.changeShareBtnColor()}
               createCard={this.handleCreateCardClick}
@@ -95,7 +100,7 @@ class App extends React.Component {
             />
           </form>
         </div>
-      </div >
+      </div>
     );
   }
 }
