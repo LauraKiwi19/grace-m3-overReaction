@@ -31,9 +31,9 @@ class App extends React.Component {
     };
 
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
-    this.setLocalStorage = this.setLocalStorage.bind(this);
     this.getPaletteId = this.getPaletteId.bind(this);
     this.getInputValues = this.getInputValues.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
   }
 
   changeShareBtnColor = () => {
@@ -80,7 +80,30 @@ class App extends React.Component {
       };
     });
   };
-  setLocalStorage = props => {};
+  setLocalStorage = props => {
+    const {
+      email,
+      github,
+      job,
+      linkedin,
+      name,
+      phone,
+    } = props.userInputs;
+    const palette = props.paletteId;
+    const userData = {
+      email: email,
+      github: github,
+      job: job,
+      linkedin: linkedin,
+      name: name,
+      palette: palette,
+      phone: phone,
+      // photo: photo,
+      // typogra: typogra
+    };
+ 
+    localStorage.setItem("userData", JSON.stringify(userData));
+  };
 
   render() {
     this.setLocalStorage(this.state);
