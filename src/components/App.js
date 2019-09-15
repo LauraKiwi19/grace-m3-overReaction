@@ -19,7 +19,6 @@ class App extends React.Component {
         linkTitle: "",
         twitterLink: "https://twitter.com/"
       }
-      paletteId: "1",
 
     };
 
@@ -46,31 +45,27 @@ class App extends React.Component {
       })
       : null;
   };
-  function getPaletteId(id) {
-  return this.SetState(({
-    paleteId: id,
-  }))
-}
-render() {
-  return (
-    <div className="section__container">
-      <div className="section__container__a">
-        <PreviewCard />
+
+  render() {
+    return (
+      <div className="section__container">
+        <div className="section__container__a">
+          <PreviewCard />
+        </div>
+        <div className="section__container__b">
+          <form className="js-form form">
+            <Design />
+            <Form />
+            <Share
+              shareBtnColor={this.changeShareBtnColor()}
+              createCard={this.handleCreateCardClick}
+              generatedCard={this.state.cardShare}
+            />
+          </form>
+        </div>
       </div>
-      <div className="section__container__b">
-        <form className="js-form form">
-          <Design getPaletteId={getPaletteId} />
-          <Form />
-          <Share
-            shareBtnColor={this.changeShareBtnColor()}
-            createCard={this.handleCreateCardClick}
-            generatedCard={this.state.cardShare}
-          />
-        </form>
-      </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
 export default App;
