@@ -1,6 +1,5 @@
 import React from "react";
 import "../scss/App.scss";
-// import Collapsible from "./Collapsible";
 import Share from "./Share";
 import Design from "./Design";
 import Form from "./Form";
@@ -12,16 +11,16 @@ class App extends React.Component {
     super();
 
     this.state = {
-      email: "",
-      github: "",
-      job: "",
-      linkedin: "",
-      name: "",
+      // email: "",
+      // github: "",
+      // job: "",
+      // linkedin: "",
+      // name: "",
+      // phone: "",
+      // photo: "",
+      // typogra: 0,
       palette: 1,
-      phone: "",
-      photo: "",
-      typogra: 0,
-      
+
       openSection: "",
       readyToCreateCard: true,
       cardShare: {
@@ -32,8 +31,10 @@ class App extends React.Component {
       }
     };
 
+    this.paletteInput = React.createR
+
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
-    this.handlePaletteClick = this.handlePaletteClick.bind(this);
+    // this.handlePaletteClick = this.handlePaletteClick.bind(this);
   }
 
   changeShareBtnColor = () => {
@@ -57,11 +58,11 @@ class App extends React.Component {
       : null;
   };
 
-  handlePaletteClick = event => {
-    const clickedPalette = event.currentTarget.firstElementChild.value;
-    this.setState({ palette: clickedPalette });
-    event.currentTarget.firstElementChild.checked = true;
-  };
+  // handlePaletteClick = event => {
+  //   const clickedPalette = this.paletteInput.current;
+  //   this.setState({ palette: clickedPalette.value });
+  //   this.paletteInput.checked = true;
+  // };
 
   render() {
     const {
@@ -76,19 +77,19 @@ class App extends React.Component {
       typogra
     } = this.state;
 
-    const userData = {
-      email: email,
-      github: github,
-      job: job,
-      linkedin: linkedin,
-      name: name,
-      palette: palette,
-      phone: phone,
-      photo: photo,
-      typogra: typogra
-    };
+    // const userData = {
+    //   email: email,
+    //   github: github,
+    //   job: job,
+    //   linkedin: linkedin,
+    //   name: name,
+    //   palette: palette,
+    //   phone: phone,
+    //   photo: photo,
+    //   typogra: typogra
+    // };
 
-    localStorage.setItem("userData", JSON.stringify(userData));
+    // localStorage.setItem("userData", JSON.stringify(userData));
 
     const changeSelectedPalette = palette => {
       return "palette" + palette;
@@ -98,13 +99,14 @@ class App extends React.Component {
       <div className="section__container">
         <div className="section__container__a">
           <Landing />
-          <PreviewCard
-            selectedPalette={changeSelectedPalette(palette)}
-          />
+          <PreviewCard selectedPalette={changeSelectedPalette(palette)} />
         </div>
         <div className="section__container__b">
           <form className="js-form form">
-            <Design onchange={this.handlePaletteClick} />
+            <Design
+              paletteInput={this.palette}
+              onchange={this.handlePaletteClick}
+            />
             <Form />
             <Share
               shareBtnColor={this.changeShareBtnColor()}

@@ -2,15 +2,14 @@ import React from "react";
 import ColorPalette from "./Palette";
 import Collapsible from "./Collapsible";
 
-const Design = props => {
+function Design() {
   return (
     <Collapsible sectionName="Diseña" icon="fa-object-ungroup far">
       <div>
         <div className="colors ">
           <h3 className="colors_h3">colores</h3>
           <div className="container_palettes">
-            <ColorPalette
-              onchange={props.onchange}
+            <ColorPalettez
               value="1"
               id="option1"
               number1="box__color1 js-box__color1"
@@ -18,7 +17,6 @@ const Design = props => {
               number3="box__color3 js-box__color3"
             />
             <ColorPalette
-             onchange={props.onchange}
               value="2"
               id="option2"
               number1="box__color4 js-box__color4"
@@ -26,7 +24,6 @@ const Design = props => {
               number3="box__color6 js-box__color6"
             />
             <ColorPalette
-             onchange={props.onchange}
               value="3"
               id="option3"
               number1="box__color7 js-box__color7"
