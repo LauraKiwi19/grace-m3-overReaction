@@ -19,7 +19,8 @@ class App extends React.Component {
         linkTitle: '',
         twitterLink: 'https://twitter.com/'
       },
-      paletteId: 1
+      paletteId: 1,
+      fullName: ''
     };
 
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
@@ -53,17 +54,25 @@ class App extends React.Component {
       };
     });
   };
+  getInputValues = value => {
+    this.setState(()=>{
+      const newInputValue = value;
+      return {
+        fullName : newInputValue,
+      };
+    });
+  };
 
   render() {
     return (
       <div className="section__container">
         <div className="section__container__a">
-          <PreviewCard />
+          <PreviewCard fullName={this.state.fullName}/>
         </div>
         <div className="section__container__b">
           <form className="js-form form">
             <Design getPaletteId={this.getPaletteId} />
-            <Form />
+            <Form getInputValues={this.getInputValues}/>
             <Share
               shareBtnColor={this.changeShareBtnColor()}
               createCard={this.handleCreateCardClick}

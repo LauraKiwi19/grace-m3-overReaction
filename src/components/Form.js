@@ -3,14 +3,14 @@ import Collapsible from './Collapsible';
 
 
 
-function Form() {
+function Form(props) {
   const asterisk = <span className="asterisk">*</span>;
   return (
     <Collapsible sectionName="Rellena" icon="far fa-keyboard">
       <div className="fillin">
         <div className="name">
           <Label htmlFor="name" text="Nombre Completo" asterisk={asterisk} />
-          <Input inputClass="item__input" id="name" type="text" name="name" placeholder="Ej: Sally Jill" required="required" />
+          <Input inputClass="item__input" id="name" type="text" name="name" placeholder="Ej: Sally Jill" required="required" getInputValues={props.getInputValues}/>
         </div>
         <div className="job">
           <Label htmlFor="job" text="Puesto" asterisk={asterisk} />
@@ -21,7 +21,7 @@ function Form() {
           <div className="photo__container">
             <Input inputClass="js-form__photo form__photo" id="files" type="file" name="photo" required="required" />
             <Label className="image__btn" htmlFor="files" text="Añadir imagen" />
-            <img class="js-preview js-photo preview" />
+            <img class="js-preview js-photo preview" alt=''/>
           </div>
         </div>
         <div className="email">
@@ -48,6 +48,15 @@ class Label extends React.Component {
 }
 
 class Input extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleChange=this.handleChange.bind(this)
+  }
+  handleChange (ev) {
+    const inputValue = ev.target.value;
+    console.log('el valor del input es', inputValue)
+    return this.props.getInputValues(inputValue)
+  };
   render() {
     return (
       <input

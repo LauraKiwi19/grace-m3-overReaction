@@ -7,8 +7,7 @@ class ColorPalette extends React.Component {
     super(props);
     this.handlePaletteClicked = this.handlePaletteClicked.bind(this)
   }
-  handlePaletteClicked = (props) => {
-    console.log('he clickado paleta', this.props.id)
+  handlePaletteClicked = () => {
     return this.props.handlePalette(this.props.id)
   }
   render() {
