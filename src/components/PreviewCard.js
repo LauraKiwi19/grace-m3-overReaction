@@ -17,8 +17,8 @@ class PreviewCard extends React.Component{
               <div className="preview__bio--rectangle "></div>
               <div className="preview__bio--div">
                 <div className="js-typocontainer">
-                  <h2 className="preview__bio--name js-box1_result">{this.props.fullName || 'Nombre Apellido'}</h2>
-                  <h3 className="preview__bio--job js-preview__job">Front-end developer</h3>
+                  <h2 className="preview__bio--name js-box1_result">{this.props.userInputs.name || 'Nombre Apellido'}</h2>
+                  <h3 className="preview__bio--job js-preview__job">{this.props.userInputs.job || 'Front-end developer'}</h3>
                 </div>
               </div>
             </div>

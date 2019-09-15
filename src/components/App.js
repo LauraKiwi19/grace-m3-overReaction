@@ -78,7 +78,7 @@ class App extends React.Component {
     return (
       <div className="section__container">
         <div className="section__container__a">
-          <PreviewCard fullName={this.state.fullName}/>
+          <PreviewCard userInputs={this.state.userInputs}/>
         </div>
         <div className="section__container__b">
           <form className="js-form form">
