@@ -53,6 +53,9 @@ class App extends React.Component {
         })
       : null;
   };
+  
+  //functions for getting and saving user's inputs into state
+
   getPaletteId = id => {
     this.setState(() => {
       const newPaletteId = id;
@@ -61,6 +64,7 @@ class App extends React.Component {
       };
     });
   };
+
   getInputValues = (name, value) => {
     const stateAttribute = name;
     const inputValue = value;

@@ -9,28 +9,36 @@ function Form(props) {
     <Collapsible sectionName="Rellena" icon="far fa-keyboard">
       <div className="fillin">
         <div className="name">
-          <Label htmlFor="name" text="Nombre Completo" asterisk={asterisk} />
+          <Label className="form__item" htmlFor="name" text="Nombre Completo" asterisk={asterisk} />
           <Input inputClass="item__input" id="name" type="text" name="name" placeholder="Ej: Sally Jill" required="required" getInputValues={props.getInputValues}/>
         </div>
         <div className="job">
-          <Label htmlFor="job" text="Puesto" asterisk={asterisk} />
+          <Label className="form__item" htmlFor="job" text="Puesto" asterisk={asterisk} />
           <Input inputClass="item__input js-input-job" id="job" type="text" name="job" placeholder="Ej: Front-end unicorn" required="required" getInputValues={props.getInputValues} />
         </div>
         <div className="photo">
-          <Label htmlFor="photo" text="Imagen de Perfil" asterisk={asterisk} />
+          <Label className="form__item" htmlFor="photo" text="Imagen de Perfil" asterisk={asterisk} />
           <div className="photo__container">
             <Input inputClass="js-form__photo form__photo" id="files" type="file" name="photo" required="required" />
             <Label className="image__btn" htmlFor="files" text="Añadir imagen" />
-            <img class="js-preview js-photo preview" alt='' getInputValues={props.getInputValues}/>
+            <img class="js-preview js-photo preview" alt=''/>
           </div>
         </div>
         <div className="email">
-          <Label htmlFor="email" text="Email" asterisk={asterisk} />
+          <Label className="form__item" htmlFor="email" text="Email" asterisk={asterisk} />
           <Input inputClass="item__input js-input-email" id="email" type="email" name="email" placeholder="Ej: sally-hill@gmail.com" required="required" getInputValues={props.getInputValues}/>
         </div>
         <div className="phone">
-          <Label htmlFor="phone" text="Teléfono" />
+          <Label className="form__item" htmlFor="phone" text="Teléfono" />
           <Input inputClass="item__input js-input-phone" type="tel" id="phone" name="phone" placeholder="Ej: 555-55-55-55" getInputValues={props.getInputValues}/>
+        </div>
+        <div className="linkedin">
+        <Label className="form__item" htmlFor="linkedin" text="Linkedin" asterisk={asterisk} />
+          <Input inputClass="item__input js-input-linkedin" type="text" id="linkedin" name="linkedin" placeholder="Ej: linkedin.com/in/sally.hill" getInputValues={props.getInputValues}/>
+        </div>
+        <div className="github">
+          <Label className="form__item" htmlFor="github" text="Github" asterisk={asterisk} />
+          <Input inputClass="item__input js-input-github" type="text" id="github" name="github" placeholder="Ej: @sally-hill" getInputValues={props.getInputValues}/>
         </div>
       </div>
     </Collapsible>)
@@ -74,4 +82,3 @@ class Input extends React.Component {
 }
 
 export default Form;
-
