@@ -55,8 +55,8 @@ class App extends React.Component {
         </div>
         <div className='section__container__b'>
           <form className='js-form form'>
-            <Form />
             <Design />
+            <Form />
             <Share
               shareBtnColor={this.changeShareBtnColor()}
               createCard={this.handleCreateCardClick}
