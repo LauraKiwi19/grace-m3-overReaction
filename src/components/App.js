@@ -7,12 +7,24 @@ import PreviewCard from "./PreviewCard";
 import defaultPicture from "./../images/default.jpg";
 import HeaderPreview from "./HeaderPreview";
 import FooterPreview from "./FooterPreview";
+import Landing from "./Landing";
 
 class App extends React.Component {
   constructor() {
     super();
 
-    this.state = {
+    this.state = this.getInitialState();
+
+    this.updateProfilePicture = this.updateProfilePicture.bind(this);
+    this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    this.handleButtonReset = this.handleButtonReset.bind(this);
+    this.getPaletteId = this.getPaletteId.bind(this);
+    this.getInputValues = this.getInputValues.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
+  }
+
+  getInitialState() {
+    return {
       openSection: "",
       readyToCreateCard: true,
       cardShare: {
@@ -34,17 +46,7 @@ class App extends React.Component {
 
       isDefaultPicture: true,
       picture: defaultPicture
-    };
-    // this.paletteInput = React.create
-
-    this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
-    // this.handlePaletteClick = this.handlePaletteClick.bind(this);
-
-    this.updateProfilePicture = this.updateProfilePicture.bind(this);
-    this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
-    this.getPaletteId = this.getPaletteId.bind(this);
-    this.getInputValues = this.getInputValues.bind(this);
-    this.setLocalStorage = this.setLocalStorage.bind(this);
+    }
   }
 
   updateProfilePicture = img => {
@@ -63,17 +65,17 @@ class App extends React.Component {
   handleCreateCardClick = () => {
     return this.state.readyToCreateCard === true
       ? this.setState(() => {
-          return {
-            cardShare: {
-              ...this.state.cardShare,
-              link:
-                "https://awesome-profile-card.com?id=A456DF0001/createdLink",
-              linkDisplay: "flex",
-              linkTitle: "La tarjeta ha sido creada:",
-              twitterLink: "https://twitter.com/"
-            }
-          };
-        })
+        return {
+          cardShare: {
+            ...this.state.cardShare,
+            link:
+              "https://awesome-profile-card.com?id=A456DF0001/createdLink",
+            linkDisplay: "flex",
+            linkTitle: "La tarjeta ha sido creada:",
+            twitterLink: "https://twitter.com/"
+          }
+        };
+      })
       : null;
   };
 
@@ -81,12 +83,22 @@ class App extends React.Component {
     const clickedPalette = this.paletteInput.current;
     this.paletteInput.checked = true;
   };
+  
+  handleButtonReset() {
+    console.log("holi")
+    this.setState(
+      this.getInitialState()
+    );
+  }
+
+
+  //functions for getting and saving user's inputs into state
 
   getPaletteId = id => {
     this.setState(() => {
-      // const newPaletteId = id;
+      const newPaletteId = id;
       return {
-        palette: id
+        palette: newPaletteId
       };
     });
   };
@@ -127,7 +139,7 @@ class App extends React.Component {
   };
 
   render() {
-    const changeSelectedPalette = palette => {
+    const changeSelectedPalette = () => {
       return "palette" + this.state.palette;
     };
 
@@ -135,12 +147,14 @@ class App extends React.Component {
 
     return (
       <div>
+        <Landing />
         <HeaderPreview />
         <div className="section__container">
           <div className="section__container__a">
             <PreviewCard
               userInputs={this.state.userInputs}
-              selectedPalette={changeSelectedPalette(this.state.palette)}
+              selectedPalette={changeSelectedPalette()}
+              deleteData={this.handleButtonReset}
             />
           </div>
           <div className="section__container__b">
