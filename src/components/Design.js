@@ -5,7 +5,7 @@ import Collapsible from "./Collapsible";
 // import "../scss/core/_typography.scss";
 // import "../scss/layout/_variables.scss";
 
-function Design(props) {
+const Design = () => {
   return (
     <Collapsible sectionName="Diseña" icon="fa-object-ungroup far">
       <div>
@@ -41,5 +41,5 @@ function Design(props) {
       </div>
     </Collapsible>
   );
-}
+};
 export default Design;

@@ -37,9 +37,11 @@ class App extends React.Component {
 
     this.updateProfilePicture = this.updateProfilePicture.bind(this);
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    this.handleButtonReset = this.handleButtonReset.bind(this);
     this.getPaletteId = this.getPaletteId.bind(this);
     this.getInputValues = this.getInputValues.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
+
   }
 
   updateProfilePicture = img => {
@@ -71,6 +73,21 @@ class App extends React.Component {
         })
       : null;
   };
+
+  handleButtonReset() {
+    this.setState({
+      UserInputs: {
+        name: "",
+        job: "",
+        phone: "",
+        email: "",
+        linkedin: "",
+        github: ""
+        // photo: defaultImage
+      }
+    });
+  }
+
 
   //functions for getting and saving user's inputs into state
 
@@ -125,7 +142,8 @@ class App extends React.Component {
         <HeaderPreview />
         <div className="section__container">
           <div className="section__container__a">
-            <PreviewCard userInputs={this.state.userInputs} />
+             <Landing />
+            <PreviewCard userInputs={this.state.userInputs} deleteData={this.handleButtonReset} />
           </div>
           <div className="section__container__b">
             <form className="js-form form">
