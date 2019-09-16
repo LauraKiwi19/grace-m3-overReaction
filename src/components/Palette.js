@@ -1,9 +1,16 @@
 import React from "react";
 
 const ColorPalette = props => {
+
   const handlePaletteClicked = () => {
     return props.handlePalette(props.id);
+    
   };
+
+  const changeCheckedRadio = () => {
+    return props.selectedPalette === props.id
+    ? true : false
+  }
 
   return (
     <div className="container" onClick={handlePaletteClicked}>
@@ -13,7 +20,7 @@ const ColorPalette = props => {
         name="palette"
         id={props.id}
         value={props.value}
-        // checked={props.isChecked}
+        checked={changeCheckedRadio()}
       />
       <label htmlFor={props.for} className="box">
         <span className={`${props.number1}`}></span>

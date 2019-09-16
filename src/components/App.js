@@ -148,6 +148,7 @@ class App extends React.Component {
               <Design
                 getPaletteId={this.getPaletteId}
                 onchange={this.handlePaletteClick}
+                selectedPalette={this.state.palette}
               />
               <Form
                 getInputValues={this.getInputValues}
