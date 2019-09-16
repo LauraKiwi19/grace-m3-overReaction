@@ -3,6 +3,7 @@ import Collapsible from './Collapsible';
 import Label from './Label'
 import Input from './Input'
 import GetAvatar from './GetAvatar'
+import "../scss/layout/_fillin.scss"
 
 
 function Form(props) {
