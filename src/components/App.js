@@ -12,6 +12,15 @@ class App extends React.Component {
     super();
 
     this.state = {
+      userInputs: {
+        name: 'Maria',
+        job: 'Coach',
+        phone: '',
+        email: 'email.com',
+        likedin: '',
+        github: ''
+      },
+
       openSection: '',
       readyToCreateCard: true,
       cardShare: {
@@ -23,6 +32,7 @@ class App extends React.Component {
     };
 
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    // this.changeIconOpacity = this.changeIconOpacity.bind(this);
   }
 
   changeShareBtnColor = () => {
@@ -46,12 +56,25 @@ class App extends React.Component {
       : null;
   };
 
+  // changeIconOpacity = () => {
+  //   const icons = ['phone', 'email', 'likedin', 'github'];
+  //   console.log(this.id)
+  //   for (const icon of icons){
+  //   }
+  // };
+
+
   render() {
+
     return (
       <div className='section__container'>
         <div className='section__container__a'>
           <Landing />
-          <PreviewCard />
+          <PreviewCard 
+            name={this.state.userInputs.name}
+            job={this.state.userInputs.job}
+            iconsList={this.state.userInputs}
+          />
         </div>
         <div className='section__container__b'>
           <form className='js-form form'>
