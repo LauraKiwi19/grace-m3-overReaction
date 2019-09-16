@@ -6,6 +6,8 @@ import Design from "./Design";
 import Form from "./Form";
 import PreviewCard from "./PreviewCard";
 import defaultPicture from "./../images/default.jpg";
+import HeaderPreview from './HeaderPreview'
+import FooterPreview from './FooterPreview'
 
 
 class App extends React.Component {
@@ -127,21 +129,25 @@ class App extends React.Component {
   render() {
     this.setLocalStorage(this.state);
     return (
-      <div className="section__container">
-        <div className="section__container__a">
-          <PreviewCard userInputs={this.state.userInputs} />
+      <div>
+        <HeaderPreview />
+        <div className="section__container">
+          <div className="section__container__a">
+            <PreviewCard userInputs={this.state.userInputs} />
+          </div>
+          <div className="section__container__b">
+            <form className="js-form form">
+              <Design getPaletteId={this.getPaletteId} />
+              <Form getInputValues={this.getInputValues} isDefaultPicture={this.state.isDefaultPicture} picture={this.state.picture} updateProfilePicture={this.updateProfilePicture} />
+              <Share
+                shareBtnColor={this.changeShareBtnColor()}
+                createCard={this.handleCreateCardClick}
+                generatedCard={this.state.cardShare}
+              />
+            </form>
+          </div>
         </div>
-        <div className="section__container__b">
-          <form className="js-form form">
-            <Design getPaletteId={this.getPaletteId} />
-            <Form getInputValues={this.getInputValues} isDefaultPicture={this.state.isDefaultPicture} picture={this.state.picture} updateProfilePicture={this.updateProfilePicture} />
-            <Share
-              shareBtnColor={this.changeShareBtnColor()}
-              createCard={this.handleCreateCardClick}
-              generatedCard={this.state.cardShare}
-            />
-          </form>
-        </div>
+        <FooterPreview />
       </div>
     );
   }
