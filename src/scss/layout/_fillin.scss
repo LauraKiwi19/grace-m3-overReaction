@@ -1,4 +1,3 @@
-//previsualización card automatic
 .form__item {
   font-family: $fontTertiary;
   font-size: $sizeText2;
@@ -52,4 +51,10 @@
   margin-left: 20px;
   margin-bottom: 8px;
   border: solid 1px $colorQuaternary;
+}
+
+.get_avatar_preview{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
