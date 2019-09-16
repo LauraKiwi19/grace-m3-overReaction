@@ -19,7 +19,7 @@ class App extends React.Component {
       // phone: "",
       // photo: "",
       // typogra: 0,
-      palette: 1,
+      palette: 2,
 
       openSection: "",
       readyToCreateCard: true,
@@ -58,11 +58,10 @@ class App extends React.Component {
       : null;
   };
 
-  // handlePaletteClick = event => {
-  //   const clickedPalette = this.paletteInput.current;
-  //   this.setState({ palette: clickedPalette.value });
-  //   this.paletteInput.checked = true;
-  // };
+  handlePaletteClick = event => {
+    const clickedPalette = this.paletteInput.current;
+    this.paletteInput.checked = true;
+  };
 
   render() {
     const {
