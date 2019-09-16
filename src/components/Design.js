@@ -2,7 +2,7 @@ import React from "react";
 import ColorPalette from "./Palette";
 import Collapsible from "./Collapsible";
 
-function Design() {
+const Design = () => {
   return (
     <Collapsible sectionName="Diseña" icon="fa-object-ungroup far">
       <div>
@@ -35,5 +35,5 @@ function Design() {
       </div>
     </Collapsible>
   );
-}
+};
 export default Design;

@@ -23,6 +23,7 @@ class App extends React.Component {
     };
 
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    this.handleButtonReset = this.handleButtonReset.bind(this);
   }
 
   changeShareBtnColor = () => {
@@ -45,13 +46,25 @@ class App extends React.Component {
         })
       : null;
   };
-
+  handleButtonReset() {
+    this.setState({
+      UserInputs: {
+        name: "",
+        job: "",
+        phone: "",
+        email: "",
+        linkedin: "",
+        github: ""
+        // photo: defaultImage
+      }
+    });
+  }
   render() {
     return (
       <div className="section__container">
         <div className="section__container__a">
           <Landing />
-          <PreviewCard />
+          <PreviewCard deleteData={this.handleButtonReset} />
         </div>
         <div className="section__container__b">
           <form className="js-form form">
