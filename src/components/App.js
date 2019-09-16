@@ -3,7 +3,7 @@ import "../scss/App.scss";
 // import Collapsible from "./Collapsible";
 import Share from "./Share";
 import Design from "./Design";
-//import Form from "./Form";
+import Form from "./Form";
 import PreviewCard from "./PreviewCard";
 import Landing from "./Landing";
 
@@ -56,6 +56,7 @@ class App extends React.Component {
         <div className="section__container__b">
           <form className="js-form form">
             <Design />
+            <Form />
             <Share
               shareBtnColor={this.changeShareBtnColor()}
               createCard={this.handleCreateCardClick}
