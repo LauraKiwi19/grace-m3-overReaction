@@ -4,23 +4,15 @@ import Share from "./Share";
 import Design from "./Design";
 import Form from "./Form";
 import PreviewCard from "./PreviewCard";
-import Landing from "./Landing";
+import defaultPicture from "./../images/default.jpg";
+import HeaderPreview from "./HeaderPreview";
+import FooterPreview from "./FooterPreview";
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      // email: "",
-      // github: "",
-      // job: "",
-      // linkedin: "",
-      // name: "",
-      // phone: "",
-      // photo: "",
-      // typogra: 0,
-      palette: 2,
-
       openSection: "",
       readyToCreateCard: true,
       cardShare: {
@@ -28,14 +20,41 @@ class App extends React.Component {
         linkDisplay: "none",
         linkTitle: "",
         twitterLink: "https://twitter.com/"
-      }
-    };
+      },
 
-    this.paletteInput = React.createR
+      palette: 1,
+      userInputs: {
+        name: "",
+        job: "",
+        phone: "",
+        email: "",
+        linkedin: "",
+        github: ""
+      },
+
+      isDefaultPicture: true,
+      picture: defaultPicture
+    };
+    // this.paletteInput = React.create
 
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
     // this.handlePaletteClick = this.handlePaletteClick.bind(this);
+
+    this.updateProfilePicture = this.updateProfilePicture.bind(this);
+    this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    this.getPaletteId = this.getPaletteId.bind(this);
+    this.getInputValues = this.getInputValues.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
   }
+
+  updateProfilePicture = img => {
+    this.setState(() => {
+      return {
+        picture: img,
+        isDefaultPicture: false
+      };
+    });
+  };
 
   changeShareBtnColor = () => {
     return this.state.readyToCreateCard === true ? "#e17334" : "lightgrey";
@@ -63,57 +82,88 @@ class App extends React.Component {
     this.paletteInput.checked = true;
   };
 
-  render() {
-    const {
-      email,
-      github,
-      job,
-      linkedin,
-      name,
-      palette,
-      phone,
-      photo,
-      typogra
-    } = this.state;
+  getPaletteId = id => {
+    this.setState(() => {
+      // const newPaletteId = id;
+      return {
+        palette: id
+      };
+    });
+  };
 
-    // const userData = {
-    //   email: email,
-    //   github: github,
-    //   job: job,
-    //   linkedin: linkedin,
-    //   name: name,
-    //   palette: palette,
-    //   phone: phone,
-    //   photo: photo,
-    //   typogra: typogra
-    // };
+  getInputValues = (name, value) => {
+    const stateAttribute = name;
+    const inputValue = value;
+    this.setState(prevState => {
+      return {
+        userInputs: {
+          ...prevState.userInputs,
+          [stateAttribute]: inputValue
+        }
+      };
+    });
+  };
 
-    // localStorage.setItem("userData", JSON.stringify(userData));
+  //save data in LocalStorage
 
-    const changeSelectedPalette = palette => {
-      return "palette" + palette;
+  setLocalStorage = props => {
+    const { email, github, job, linkedin, name, phone } = props.userInputs;
+    const palette = props.palette;
+    const isDefaultPicture = props.isDefaultPicture;
+    const picture = props.picture;
+    const userData = {
+      email: email,
+      github: github,
+      job: job,
+      linkedin: linkedin,
+      name: name,
+      palette: palette,
+      phone: phone,
+      isDefaultPicture: isDefaultPicture,
+      picture: picture
     };
 
+    localStorage.setItem("userData", JSON.stringify(userData));
+  };
+
+  render() {
+    const changeSelectedPalette = palette => {
+      return "palette" + this.state.palette;
+    };
+
+    this.setLocalStorage(this.state);
+
     return (
-      <div className="section__container">
-        <div className="section__container__a">
-          <Landing />
-          <PreviewCard selectedPalette={changeSelectedPalette(palette)} />
-        </div>
-        <div className="section__container__b">
-          <form className="js-form form">
-            <Design
-              paletteInput={this.palette}
-              onchange={this.handlePaletteClick}
+      <div>
+        <HeaderPreview />
+        <div className="section__container">
+          <div className="section__container__a">
+            <PreviewCard
+              userInputs={this.state.userInputs}
+              selectedPalette={changeSelectedPalette(this.state.palette)}
             />
-            <Form />
-            <Share
-              shareBtnColor={this.changeShareBtnColor()}
-              createCard={this.handleCreateCardClick}
-              generatedCard={this.state.cardShare}
-            />
-          </form>
+          </div>
+          <div className="section__container__b">
+            <form className="js-form form">
+              <Design
+                getPaletteId={this.getPaletteId}
+                onchange={this.handlePaletteClick}
+              />
+              <Form
+                getInputValues={this.getInputValues}
+                isDefaultPicture={this.state.isDefaultPicture}
+                picture={this.state.picture}
+                updateProfilePicture={this.updateProfilePicture}
+              />
+              <Share
+                shareBtnColor={this.changeShareBtnColor()}
+                createCard={this.handleCreateCardClick}
+                generatedCard={this.state.cardShare}
+              />
+            </form>
+          </div>
         </div>
+        <FooterPreview />
       </div>
     );
   }
