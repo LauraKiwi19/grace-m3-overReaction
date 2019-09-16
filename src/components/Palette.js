@@ -1,9 +1,18 @@
 import React from "react";
 
+
+
 class ColorPalette extends React.Component {
+  constructor(props){
+    super(props);
+    this.handlePaletteClicked = this.handlePaletteClicked.bind(this)
+  }
+  handlePaletteClicked = () => {
+    return this.props.handlePalette(this.props.id)
+  }
   render() {
     return (
-      <div className="container">
+      <div className="container" onClick={this.handlePaletteClicked}>
         <input
           type="radio"
           className="pallete js-palettes"
