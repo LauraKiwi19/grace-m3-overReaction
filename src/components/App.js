@@ -8,12 +8,24 @@ import PreviewCard from "./PreviewCard";
 import defaultPicture from "./../images/default.jpg";
 import HeaderPreview from "./HeaderPreview";
 import FooterPreview from "./FooterPreview";
+import Landing from "./Landing";
 
 class App extends React.Component {
   constructor() {
     super();
 
-    this.state = {
+    this.state = this.getInitialState();
+
+    this.updateProfilePicture = this.updateProfilePicture.bind(this);
+    this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    this.handleButtonReset = this.handleButtonReset.bind(this);
+    this.getPaletteId = this.getPaletteId.bind(this);
+    this.getInputValues = this.getInputValues.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
+  }
+
+  getInitialState() {
+    return {
       openSection: "",
       readyToCreateCard: true,
       cardShare: {
@@ -34,13 +46,6 @@ class App extends React.Component {
       isDefaultPicture: true,
       picture: defaultPicture
     };
-
-    this.updateProfilePicture = this.updateProfilePicture.bind(this);
-    this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
-    this.handleButtonReset = this.handleButtonReset.bind(this);
-    this.getPaletteId = this.getPaletteId.bind(this);
-    this.getInputValues = this.getInputValues.bind(this);
-    this.setLocalStorage = this.setLocalStorage.bind(this);
   }
 
   updateProfilePicture = img => {
@@ -73,17 +78,8 @@ class App extends React.Component {
       : null;
   };
   handleButtonReset() {
-    this.setState({
-      UserInputs: {
-        name: "",
-        job: "",
-        phone: "",
-        email: "",
-        linkedin: "",
-        github: ""
-        // photo: defaultImage
-      }
-    });
+    console.log("holi");
+    this.setState(this.getInitialState());
   }
 
   //functions for getting and saving user's inputs into state
@@ -139,6 +135,7 @@ class App extends React.Component {
         <HeaderPreview />
         <div className="section__container">
           <div className="section__container__a">
+            <Landing />
             <PreviewCard
               userInputs={this.state.userInputs}
               deleteData={this.handleButtonReset}
