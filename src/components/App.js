@@ -1,5 +1,5 @@
-import React from "react";
-import "../scss/App.scss";
+import React from 'react';
+import '../scss/App.scss';
 // import Collapsible from "./Collapsible";
 import Share from "./Share";
 import Design from "./Design";
@@ -8,37 +8,41 @@ import PreviewCard from "./PreviewCard";
 import defaultPicture from "./../images/default.jpg";
 
 
-
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      openSection: "",
+      openSection: '',
       readyToCreateCard: true,
       cardShare: {
-        link: "https://awesome-profile-card.com?id=A456DF0001",
-        linkDisplay: "none",
-        linkTitle: "",
-        twitterLink: "https://twitter.com/"
+        link: 'https://awesome-profile-card.com?id=A456DF0001',
+        linkDisplay: 'none',
+        linkTitle: '',
+        twitterLink: 'https://twitter.com/'
       },
-
+      palette: 1,
+      userInputs: {
+        name: '',
+        job: '',
+        phone: '',
+        email: '',
+        linkedin: '',
+        github: ''
+      },
       isDefaultPicture: true,
       picture: defaultPicture
-
     };
 
     this.updateProfilePicture = this.updateProfilePicture.bind(this)
     this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    this.getPaletteId = this.getPaletteId.bind(this);
+    this.getInputValues = this.getInputValues.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
   }
 
-  updateProfilePicture(img) {
-    console.log("holi")
-    console.log(img)
-    debugger;
-    this.setState(prevState => {
-
-      //const newProfile = { ...prevState, picture: img };
+  updateProfilePicture = (img) => {
+    this.setState(() => {
       return {
         picture: img,
         isDefaultPicture: false
@@ -47,7 +51,7 @@ class App extends React.Component {
   }
 
   changeShareBtnColor = () => {
-    return this.state.readyToCreateCard === true ? "#e17334" : "lightgrey";
+    return this.state.readyToCreateCard === true ? '#e17334' : 'lightgrey';
   };
 
   handleCreateCardClick = () => {
@@ -57,26 +61,80 @@ class App extends React.Component {
           cardShare: {
             ...this.state.cardShare,
             link:
-              "https://awesome-profile-card.com?id=A456DF0001/createdLink",
-            linkDisplay: "flex",
-            linkTitle: "La tarjeta ha sido creada:",
-            twitterLink: "https://twitter.com/"
+              'https://awesome-profile-card.com?id=A456DF0001/createdLink',
+            linkDisplay: 'flex',
+            linkTitle: 'La tarjeta ha sido creada:',
+            twitterLink: 'https://twitter.com/'
           }
         };
       })
       : null;
   };
 
+  //functions for getting and saving user's inputs into state
+
+  getPaletteId = id => {
+    this.setState(() => {
+      const newPaletteId = id;
+      return {
+        palette: newPaletteId
+      };
+    });
+  };
+
+  getInputValues = (name, value) => {
+    const stateAttribute = name;
+    const inputValue = value;
+    this.setState(prevState => {
+      return {
+        userInputs: {
+          ...prevState.userInputs,
+          [stateAttribute]: inputValue
+        }
+      };
+    });
+  };
+
+  //save data in LocalStorage
+
+  setLocalStorage = props => {
+    const {
+      email,
+      github,
+      job,
+      linkedin,
+      name,
+      phone,
+    } = props.userInputs;
+    const palette = props.palette;
+    const isDefaultPicture = props.isDefaultPicture;
+    const picture = props.picture;
+    const userData = {
+      email: email,
+      github: github,
+      job: job,
+      linkedin: linkedin,
+      name: name,
+      palette: palette,
+      phone: phone,
+      isDefaultPicture: isDefaultPicture,
+      picture: picture
+    }
+
+    localStorage.setItem("userData", JSON.stringify(userData));
+  };
+
   render() {
+    this.setLocalStorage(this.state);
     return (
       <div className="section__container">
         <div className="section__container__a">
-          <PreviewCard />
+          <PreviewCard userInputs={this.state.userInputs} />
         </div>
         <div className="section__container__b">
           <form className="js-form form">
-            <Design />
-            <Form isDefaultPicture={this.state.isDefaultPicture} picture={this.state.picture} updateProfilePicture={this.updateProfilePicture} />
+            <Design getPaletteId={this.getPaletteId} />
+            <Form getInputValues={this.getInputValues} isDefaultPicture={this.state.isDefaultPicture} picture={this.state.picture} updateProfilePicture={this.updateProfilePicture} />
             <Share
               shareBtnColor={this.changeShareBtnColor()}
               createCard={this.handleCreateCardClick}

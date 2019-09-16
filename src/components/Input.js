@@ -1,10 +1,19 @@
-import React from 'react'
+import React from 'react';
 
 
-function Input(props) {
+
+const Input = (props) => {
+
+    const handleChange = (ev) => {
+        const inputValue = ev.target.value;
+        const inputName = ev.target.name;
+        return props.getInputValues(inputName, inputValue)
+    };
+
     return (
+
         <input
-            onChange={props.handleChange}
+            onChange={handleChange}
             className={props.inputClass}
             value={props.value}
             id={props.id}
