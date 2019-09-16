@@ -2,7 +2,7 @@ import React from "react";
 import ColorPalette from "./Palette";
 import Collapsible from "./Collapsible";
 
-const Design = () => {
+const Design = (props) => {
   return (
     <Collapsible sectionName="Diseña" icon="fa-object-ungroup far">
       <div>

@@ -8,7 +8,7 @@ class PreviewCard extends React.Component {
       <section className="sectiona__main">
         <div className="sectiona__main--container">
           <div className="main__button--container">
-            <ResetButton />
+            <ResetButton deleteData={this.props.deleteData} />
           </div>
           <div className="card js-palettecontainer">
             <div className="preview__bio">

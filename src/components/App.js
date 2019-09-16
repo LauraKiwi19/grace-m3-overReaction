@@ -8,12 +8,25 @@ import PreviewCard from "./PreviewCard";
 import defaultPicture from "./../images/default.jpg";
 import HeaderPreview from "./HeaderPreview";
 import FooterPreview from "./FooterPreview";
+import Landing from "./Landing";
 
 class App extends React.Component {
   constructor() {
     super();
 
-    this.state = {
+    this.state = this.getInitialState();
+
+    this.updateProfilePicture = this.updateProfilePicture.bind(this);
+    this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
+    this.handleButtonReset = this.handleButtonReset.bind(this);
+    this.getPaletteId = this.getPaletteId.bind(this);
+    this.getInputValues = this.getInputValues.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
+
+  }
+
+  getInitialState() {
+    return {
       openSection: "",
       readyToCreateCard: true,
       cardShare: {
@@ -33,15 +46,7 @@ class App extends React.Component {
       },
       isDefaultPicture: true,
       picture: defaultPicture
-    };
-
-    this.updateProfilePicture = this.updateProfilePicture.bind(this);
-    this.handleCreateCardClick = this.handleCreateCardClick.bind(this);
-    this.handleButtonReset = this.handleButtonReset.bind(this);
-    this.getPaletteId = this.getPaletteId.bind(this);
-    this.getInputValues = this.getInputValues.bind(this);
-    this.setLocalStorage = this.setLocalStorage.bind(this);
-
+    }
   }
 
   updateProfilePicture = img => {
@@ -60,32 +65,25 @@ class App extends React.Component {
   handleCreateCardClick = () => {
     return this.state.readyToCreateCard === true
       ? this.setState(() => {
-          return {
-            cardShare: {
-              ...this.state.cardShare,
-              link:
-                "https://awesome-profile-card.com?id=A456DF0001/createdLink",
-              linkDisplay: "flex",
-              linkTitle: "La tarjeta ha sido creada:",
-              twitterLink: "https://twitter.com/"
-            }
-          };
-        })
+        return {
+          cardShare: {
+            ...this.state.cardShare,
+            link:
+              "https://awesome-profile-card.com?id=A456DF0001/createdLink",
+            linkDisplay: "flex",
+            linkTitle: "La tarjeta ha sido creada:",
+            twitterLink: "https://twitter.com/"
+          }
+        };
+      })
       : null;
   };
 
   handleButtonReset() {
-    this.setState({
-      UserInputs: {
-        name: "",
-        job: "",
-        phone: "",
-        email: "",
-        linkedin: "",
-        github: ""
-        // photo: defaultImage
-      }
-    });
+    console.log("holi")
+    this.setState(
+      this.getInitialState()
+    );
   }
 
 
@@ -142,7 +140,7 @@ class App extends React.Component {
         <HeaderPreview />
         <div className="section__container">
           <div className="section__container__a">
-             <Landing />
+            <Landing />
             <PreviewCard userInputs={this.state.userInputs} deleteData={this.handleButtonReset} />
           </div>
           <div className="section__container__b">
