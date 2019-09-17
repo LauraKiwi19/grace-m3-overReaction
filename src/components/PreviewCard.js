@@ -10,7 +10,7 @@ class PreviewCard extends React.Component {
           <div className="main__button--container">
             <ResetButton deleteData={this.props.deleteData} />
           </div>
-          <div className="card js-palettecontainer">
+          <div className={"card js-palettecontainer " + this.props.selectedPalette}>
             <div className="preview__bio">
               <div className="preview__bio--rectangle "></div>
               <div className="preview__bio--div">
@@ -25,8 +25,8 @@ class PreviewCard extends React.Component {
               </div>
             </div>
             <div className="js-card__image card__image" alt="photo card"></div>
-            <SocialIcons />
-          </div>
+            <SocialIcons iconsList={this.props.iconsList}/>
+            </div>
         </div>
       </section>
     );

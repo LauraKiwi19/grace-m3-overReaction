@@ -1,6 +1,5 @@
 import React from "react";
 import "../scss/App.scss";
-// import Collapsible from "./Collapsible";
 import Share from "./Share";
 import Design from "./Design";
 import Form from "./Form";
@@ -34,6 +33,7 @@ class App extends React.Component {
         linkTitle: "",
         twitterLink: "https://twitter.com/"
       },
+
       palette: 1,
       userInputs: {
         name: "",
@@ -43,6 +43,7 @@ class App extends React.Component {
         linkedin: "",
         github: ""
       },
+
       isDefaultPicture: true,
       picture: defaultPicture
     };
@@ -77,6 +78,12 @@ class App extends React.Component {
         })
       : null;
   };
+
+  handlePaletteClick = event => {
+    const clickedPalette = this.paletteInput.current;
+    this.paletteInput.checked = true;
+  };
+
   handleButtonReset() {
     this.setState(this.getInitialState());
   }
@@ -128,21 +135,34 @@ class App extends React.Component {
   };
 
   render() {
+    const changeSelectedPalette = () => {
+      return "palette" + this.state.palette;
+    };
+
     this.setLocalStorage(this.state);
+
     return (
-      <div>
-        <HeaderPreview />
+      <div className="app">
+        <Landing />
         <div className="section__container">
           <div className="section__container__a">
             <Landing />
             <PreviewCard
+              name={this.state.userInputs.name}
+              job={this.state.userInputs.job}
+              iconsList={this.state.userInputs}
               userInputs={this.state.userInputs}
+              selectedPalette={changeSelectedPalette()}
               deleteData={this.handleButtonReset}
             />
           </div>
           <div className="section__container__b">
             <form className="js-form form">
-              <Design getPaletteId={this.getPaletteId} />
+              <Design
+                getPaletteId={this.getPaletteId}
+                onchange={this.handlePaletteClick}
+                selectedPalette={this.state.palette}
+              />
               <Form
                 stateValueInputs={this.state.userInputs}
                 getInputValues={this.getInputValues}
