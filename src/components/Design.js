@@ -1,6 +1,9 @@
 import React from "react";
 import ColorPalette from "./Palette";
 import Collapsible from "./Collapsible";
+// import "../scss/layout/_design.scss";
+// import "../scss/core/_typography.scss";
+// import "../scss/layout/_variables.scss";
 
 const Design = props => {
   return (

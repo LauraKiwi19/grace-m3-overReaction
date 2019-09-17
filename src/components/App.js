@@ -85,7 +85,6 @@ class App extends React.Component {
   };
 
   handleButtonReset() {
-    console.log("holi");
     this.setState(this.getInitialState());
   }
 
@@ -166,6 +165,7 @@ class App extends React.Component {
                 selectedPalette={this.state.palette}
               />
               <Form
+                stateValueInputs={this.state.userInputs}
                 getInputValues={this.getInputValues}
                 isDefaultPicture={this.state.isDefaultPicture}
                 picture={this.state.picture}
