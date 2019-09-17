@@ -1,6 +1,5 @@
 import React from "react";
 import "../scss/App.scss";
-// import Collapsible from "./Collapsible";
 import Share from "./Share";
 import Design from "./Design";
 import Form from "./Form";
@@ -22,7 +21,6 @@ class App extends React.Component {
     this.getPaletteId = this.getPaletteId.bind(this);
     this.getInputValues = this.getInputValues.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
-
   }
 
   getInitialState() {
@@ -35,6 +33,7 @@ class App extends React.Component {
         linkTitle: "",
         twitterLink: "https://twitter.com/"
       },
+
       palette: 1,
       userInputs: {
         name: "",
@@ -44,6 +43,7 @@ class App extends React.Component {
         linkedin: "",
         github: ""
       },
+
       isDefaultPicture: true,
       picture: defaultPicture
     }
@@ -79,6 +79,11 @@ class App extends React.Component {
       : null;
   };
 
+  handlePaletteClick = event => {
+    const clickedPalette = this.paletteInput.current;
+    this.paletteInput.checked = true;
+  };
+  
   handleButtonReset() {
     console.log("holi")
     this.setState(
@@ -134,18 +139,31 @@ class App extends React.Component {
   };
 
   render() {
+    const changeSelectedPalette = () => {
+      return "palette" + this.state.palette;
+    };
+
     this.setLocalStorage(this.state);
+
     return (
       <div>
+        <Landing />
         <HeaderPreview />
         <div className="section__container">
           <div className="section__container__a">
-            <Landing />
-            <PreviewCard userInputs={this.state.userInputs} deleteData={this.handleButtonReset} />
+            <PreviewCard
+              userInputs={this.state.userInputs}
+              selectedPalette={changeSelectedPalette()}
+              deleteData={this.handleButtonReset}
+            />
           </div>
           <div className="section__container__b">
             <form className="js-form form">
-              <Design getPaletteId={this.getPaletteId} />
+              <Design
+                getPaletteId={this.getPaletteId}
+                onchange={this.handlePaletteClick}
+                selectedPalette={this.state.palette}
+              />
               <Form
                 getInputValues={this.getInputValues}
                 isDefaultPicture={this.state.isDefaultPicture}
