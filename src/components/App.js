@@ -146,7 +146,6 @@ class App extends React.Component {
 
     return (
       <div className='app'>
-        <Landing />
         <div className='section__container'>
           <div className='section__container__a'>
             <PreviewCard
@@ -177,6 +176,12 @@ class App extends React.Component {
                 generatedCard={this.state.cardShare}
               />
             </form>
+            <div>
+              <Switch>
+                <Route exact path='/' component={Landing} />
+                <Route path='/card' component={App} />
+              </Switch>
+            </div>
           </div>
         </div>
         <FooterPreview />
