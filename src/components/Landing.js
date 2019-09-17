@@ -3,6 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 
 import '../scss/pages/_landing.scss';
 import Logo from '../images/logo_awesome.svg';
+import App from './App';
 
 /*const Landing = (props) => {
   return (
@@ -39,9 +40,9 @@ class Landing extends React.Component {
               </div>
             </div>
           </section>
-          <button className='landing_button'>
-            <Link to='/card'></Link>COMENZAR
-          </button>
+          <Link to='/card'>
+            <button className='landing_button'>COMENZAR</button>
+          </Link>
         </div>
       </div>
     );
