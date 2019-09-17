@@ -146,7 +146,6 @@ class App extends React.Component {
         <Landing />
         <div className="section__container">
           <div className="section__container__a">
-            <Landing />
             <PreviewCard
               name={this.state.userInputs.name}
               job={this.state.userInputs.job}
@@ -154,6 +153,8 @@ class App extends React.Component {
               userInputs={this.state.userInputs}
               selectedPalette={changeSelectedPalette()}
               deleteData={this.handleButtonReset}
+              picture={this.state.picture}
+              isDefaultPicture={this.state.isDefaultPicture}
             />
           </div>
           <div className="section__container__b">
