@@ -1,6 +1,5 @@
 import React from "react";
 import "../scss/App.scss";
-// import Collapsible from "./Collapsible";
 import Share from "./Share";
 import Design from "./Design";
 import Form from "./Form";
@@ -22,7 +21,6 @@ class App extends React.Component {
     this.getPaletteId = this.getPaletteId.bind(this);
     this.getInputValues = this.getInputValues.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
-
   }
 
   getInitialState() {
@@ -35,6 +33,7 @@ class App extends React.Component {
         linkTitle: "",
         twitterLink: "https://twitter.com/"
       },
+
       palette: 1,
       userInputs: {
         name: "",
@@ -44,9 +43,10 @@ class App extends React.Component {
         linkedin: "",
         github: ""
       },
+
       isDefaultPicture: true,
       picture: defaultPicture
-    }
+    };
   }
 
   updateProfilePicture = img => {
@@ -65,27 +65,29 @@ class App extends React.Component {
   handleCreateCardClick = () => {
     return this.state.readyToCreateCard === true
       ? this.setState(() => {
-        return {
-          cardShare: {
-            ...this.state.cardShare,
-            link:
-              "https://awesome-profile-card.com?id=A456DF0001/createdLink",
-            linkDisplay: "flex",
-            linkTitle: "La tarjeta ha sido creada:",
-            twitterLink: "https://twitter.com/"
-          }
-        };
-      })
+          return {
+            cardShare: {
+              ...this.state.cardShare,
+              link:
+                "https://awesome-profile-card.com?id=A456DF0001/createdLink",
+              linkDisplay: "flex",
+              linkTitle: "La tarjeta ha sido creada:",
+              twitterLink: "https://twitter.com/"
+            }
+          };
+        })
       : null;
   };
 
-  handleButtonReset() {
-    console.log("holi")
-    this.setState(
-      this.getInitialState()
-    );
-  }
+  handlePaletteClick = event => {
+    const clickedPalette = this.paletteInput.current;
+    this.paletteInput.checked = true;
+  };
 
+  handleButtonReset() {
+    console.log("holi");
+    this.setState(this.getInitialState());
+  }
 
   //functions for getting and saving user's inputs into state
 
@@ -134,18 +136,33 @@ class App extends React.Component {
   };
 
   render() {
+    const changeSelectedPalette = () => {
+      return "palette" + this.state.palette;
+    };
+
     this.setLocalStorage(this.state);
+
     return (
-      <div>
-        <HeaderPreview />
+      <div className="app">
+        <Landing />
         <div className="section__container">
           <div className="section__container__a">
-            <Landing />
-            <PreviewCard userInputs={this.state.userInputs} deleteData={this.handleButtonReset} />
+            <PreviewCard
+              name={this.state.userInputs.name}
+              job={this.state.userInputs.job}
+              iconsList={this.state.userInputs}
+              userInputs={this.state.userInputs}
+              selectedPalette={changeSelectedPalette()}
+              deleteData={this.handleButtonReset}
+            />
           </div>
           <div className="section__container__b">
             <form className="js-form form">
-              <Design getPaletteId={this.getPaletteId} />
+              <Design
+                getPaletteId={this.getPaletteId}
+                onchange={this.handlePaletteClick}
+                selectedPalette={this.state.palette}
+              />
               <Form
                 getInputValues={this.getInputValues}
                 isDefaultPicture={this.state.isDefaultPicture}
