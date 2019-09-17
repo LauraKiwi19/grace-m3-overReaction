@@ -25,8 +25,8 @@ class PreviewCard extends React.Component {
               </div>
             </div>
             <div className="js-card__image card__image" alt="photo card"></div>
-            <SocialIcons />
-          </div>
+            <SocialIcons iconsList={this.props.iconsList}/>
+            </div>
         </div>
       </section>
     );

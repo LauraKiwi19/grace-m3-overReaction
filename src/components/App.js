@@ -46,7 +46,7 @@ class App extends React.Component {
 
       isDefaultPicture: true,
       picture: defaultPicture
-    }
+    };
   }
 
   updateProfilePicture = img => {
@@ -65,17 +65,17 @@ class App extends React.Component {
   handleCreateCardClick = () => {
     return this.state.readyToCreateCard === true
       ? this.setState(() => {
-        return {
-          cardShare: {
-            ...this.state.cardShare,
-            link:
-              "https://awesome-profile-card.com?id=A456DF0001/createdLink",
-            linkDisplay: "flex",
-            linkTitle: "La tarjeta ha sido creada:",
-            twitterLink: "https://twitter.com/"
-          }
-        };
-      })
+          return {
+            cardShare: {
+              ...this.state.cardShare,
+              link:
+                "https://awesome-profile-card.com?id=A456DF0001/createdLink",
+              linkDisplay: "flex",
+              linkTitle: "La tarjeta ha sido creada:",
+              twitterLink: "https://twitter.com/"
+            }
+          };
+        })
       : null;
   };
 
@@ -83,14 +83,11 @@ class App extends React.Component {
     const clickedPalette = this.paletteInput.current;
     this.paletteInput.checked = true;
   };
-  
-  handleButtonReset() {
-    console.log("holi")
-    this.setState(
-      this.getInitialState()
-    );
-  }
 
+  handleButtonReset() {
+    console.log("holi");
+    this.setState(this.getInitialState());
+  }
 
   //functions for getting and saving user's inputs into state
 
@@ -146,12 +143,14 @@ class App extends React.Component {
     this.setLocalStorage(this.state);
 
     return (
-      <div>
+      <div className="app">
         <Landing />
-        <HeaderPreview />
         <div className="section__container">
           <div className="section__container__a">
             <PreviewCard
+              name={this.state.userInputs.name}
+              job={this.state.userInputs.job}
+              iconsList={this.state.userInputs}
               userInputs={this.state.userInputs}
               selectedPalette={changeSelectedPalette()}
               deleteData={this.handleButtonReset}
