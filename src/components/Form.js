@@ -20,7 +20,7 @@ function Form(props) {
           <Input inputClass="item__input js-input-job" id="job" type="text" name="job" placeholder="Ej: Front-end unicorn" required="required" getInputValues={props.getInputValues} />
         </div>
         <div className="photo">
-          <Label className="form__item" htmlFor="photo" text="Imagen de Perfil" asterisk={asterisk} />
+          <Label className="form__item" htmlFor="photo" name='photo' text="Imagen de Perfil" asterisk={asterisk} />
           <GetAvatar isDefaultPicture={props.isDefaultPicture} picture={props.picture} updateProfilePicture={props.updateProfilePicture} />
         </div>
         <div className="email">
