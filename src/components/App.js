@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Switch, Link } from 'react-router-dom';
 import '../scss/App.scss';
 // import Collapsible from "./Collapsible";
 import Share from './Share';

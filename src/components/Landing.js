@@ -1,6 +1,12 @@
 import React from 'react';
 import '../scss/pages/_landing.scss';
 import Logo from '../images/logo_awesome.svg';
+
+/*const Landing = (props) => {
+  return (
+    const Landing = (props) => {
+      return (
+              <button className='landing_button' onClick={props.}></button>*/
 class Landing extends React.Component {
   render() {
     return (
