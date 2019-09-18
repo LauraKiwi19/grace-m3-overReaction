@@ -24,6 +24,7 @@ class Card extends React.Component {
   }
 
   getInitialState() {
+    const localData = JSON.parse(localStorage.getItem('userData')) || {};
     return {
       openSection: "",
       readyToCreateCard: true,
@@ -34,14 +35,14 @@ class Card extends React.Component {
         twitterLink: "https://twitter.com/"
       },
 
-      palette: 1,
+      palette: localData.palette || 1,
       userInputs: {
-        name: "",
-        job: "",
-        phone: "",
-        email: "",
-        linkedin: "",
-        github: ""
+        name: localData.name || "",
+        job: localData.job || "",
+        phone: localData.phone || "",
+        email: localData.email || "",
+        linkedin: localData.linkedin || "",
+        github: localData.github || ""
       },
 
       isDefaultPicture: true,
@@ -85,8 +86,8 @@ class Card extends React.Component {
   };
 
   handleButtonReset() {
-    console.log("holi");
     this.setState(this.getInitialState());
+    localStorage.removeItem('userData')
   }
 
   //functions for getting and saving user's inputs into state
@@ -115,11 +116,11 @@ class Card extends React.Component {
 
   //save data in LocalStorage
 
-  setLocalStorage = props => {
-    const { email, github, job, linkedin, name, phone } = props.userInputs;
-    const palette = props.palette;
-    const isDefaultPicture = props.isDefaultPicture;
-    const picture = props.picture;
+  setLocalStorage = () => {
+    const { email, github, job, linkedin, name, phone } = this.state.userInputs;
+    const palette = this.state.palette;
+    const isDefaultPicture = this.state.isDefaultPicture;
+    const picture = this.state.picture;
     const userData = {
       email: email,
       github: github,
@@ -140,7 +141,7 @@ class Card extends React.Component {
       return "palette" + this.state.palette;
     };
 
-    this.setLocalStorage(this.state);
+    this.setLocalStorage();
 
     return (
       <div className="app">
