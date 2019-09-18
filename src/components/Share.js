@@ -30,7 +30,7 @@ const Share = props => {
         <a
           className="created_card_button js-button-twitter"
           style={{ display: linkDisplay }}
-          href={twitterLink}
+          href={'https://twitter.com/intent/tweet?text=Mira mi tarjeta de visita' + }
         >
           <i className="fab fa-twitter"></i>Compartir en Twitter
         </a>

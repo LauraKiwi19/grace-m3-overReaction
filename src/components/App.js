@@ -8,6 +8,8 @@ import defaultPicture from "./../images/default.jpg";
 import HeaderPreview from "./HeaderPreview";
 import FooterPreview from "./FooterPreview";
 import Landing from "./Landing";
+import sendRequest from "../data/sendData";
+
 
 class App extends React.Component {
   constructor() {
