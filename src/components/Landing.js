@@ -1,6 +1,15 @@
 import React from 'react';
+import { Route, Switch, Link } from 'react-router-dom';
+
 import '../scss/pages/_landing.scss';
 import Logo from '../images/logo_awesome.svg';
+import App from './App';
+
+/*const Landing = (props) => {
+  return (
+    const Landing = (props) => {
+      return (
+              <button className='landing_button' onClick={props.}></button>*/
 class Landing extends React.Component {
   render() {
     return (
@@ -31,7 +40,9 @@ class Landing extends React.Component {
               </div>
             </div>
           </section>
-          <button className='landing_button'>COMENZAR</button>
+          <Link to='/card'>
+            <button className='landing_button'>COMENZAR</button>
+          </Link>
         </div>
       </div>
     );
