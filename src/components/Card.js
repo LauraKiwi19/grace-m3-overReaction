@@ -1,13 +1,13 @@
-import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import React from "react";
+import { Route, Switch, Link } from "react-router-dom";
 
-import '../scss/App.scss';
-import Share from './Share';
-import Design from './Design';
-import Form from './Form';
-import PreviewCard from './PreviewCard';
-import defaultPicture from './../images/default.jpg';
-import HeaderPreview from './HeaderPreview';
+import "../scss/App.scss";
+import Share from "./Share";
+import Design from "./Design";
+import Form from "./Form";
+import PreviewCard from "./PreviewCard";
+import defaultPicture from "./../images/default.jpg";
+import HeaderPreview from "./HeaderPreview";
 
 class Card extends React.Component {
   constructor() {
@@ -25,23 +25,23 @@ class Card extends React.Component {
 
   getInitialState() {
     return {
-      openSection: '',
+      openSection: "",
       readyToCreateCard: true,
       cardShare: {
-        link: 'https://awesome-profile-card.com?id=A456DF0001',
-        linkDisplay: 'none',
-        linkTitle: '',
-        twitterLink: 'https://twitter.com/'
+        link: "https://awesome-profile-card.com?id=A456DF0001",
+        linkDisplay: "none",
+        linkTitle: "",
+        twitterLink: "https://twitter.com/"
       },
 
       palette: 1,
       userInputs: {
-        name: '',
-        job: '',
-        phone: '',
-        email: '',
-        linkedin: '',
-        github: ''
+        name: "",
+        job: "",
+        phone: "",
+        email: "",
+        linkedin: "",
+        github: ""
       },
 
       isDefaultPicture: true,
@@ -59,7 +59,7 @@ class Card extends React.Component {
   };
 
   changeShareBtnColor = () => {
-    return this.state.readyToCreateCard === true ? '#e17334' : 'lightgrey';
+    return this.state.readyToCreateCard === true ? "#e17334" : "lightgrey";
   };
 
   handleCreateCardClick = () => {
@@ -69,10 +69,10 @@ class Card extends React.Component {
             cardShare: {
               ...this.state.cardShare,
               link:
-                'https://awesome-profile-card.com?id=A456DF0001/createdLink',
-              linkDisplay: 'flex',
-              linkTitle: 'La tarjeta ha sido creada:',
-              twitterLink: 'https://twitter.com/'
+                "https://awesome-profile-card.com?id=A456DF0001/createdLink",
+              linkDisplay: "flex",
+              linkTitle: "La tarjeta ha sido creada:",
+              twitterLink: "https://twitter.com/"
             }
           };
         })
@@ -85,7 +85,7 @@ class Card extends React.Component {
   };
 
   handleButtonReset() {
-    console.log('holi');
+    console.log("holi");
     this.setState(this.getInitialState());
   }
 
@@ -132,21 +132,21 @@ class Card extends React.Component {
       picture: picture
     };
 
-    localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem("userData", JSON.stringify(userData));
   };
 
   render() {
     const changeSelectedPalette = () => {
-      return 'palette' + this.state.palette;
+      return "palette" + this.state.palette;
     };
 
     this.setLocalStorage(this.state);
 
     return (
-      <div className='app'>
+      <div className="app">
         <HeaderPreview />
-        <div className='section__container'>
-          <div className='section__container__a'>
+        <div className="section__container">
+          <div className="section__container__a">
             <PreviewCard
               name={this.state.userInputs.name}
               job={this.state.userInputs.job}
@@ -156,14 +156,15 @@ class Card extends React.Component {
               deleteData={this.handleButtonReset}
             />
           </div>
-          <div className='section__container__b'>
-            <form className='js-form form'>
+          <div className="section__container__b">
+            <form className="js-form form">
               <Design
                 getPaletteId={this.getPaletteId}
                 onchange={this.handlePaletteClick}
                 selectedPalette={this.state.palette}
               />
               <Form
+                stateValueInputs={this.state.userInputs}
                 getInputValues={this.getInputValues}
                 isDefaultPicture={this.state.isDefaultPicture}
                 picture={this.state.picture}
