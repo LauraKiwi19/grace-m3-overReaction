@@ -4,7 +4,6 @@ const ColorPalette = props => {
 
   const handlePaletteClicked = () => {
     return props.handlePalette(props.id);
-    
   };
 
   const changeCheckedRadio = () => {
@@ -21,6 +20,7 @@ const ColorPalette = props => {
         id={props.id}
         value={props.value}
         checked={changeCheckedRadio()}
+        readOnly
       />
       <label htmlFor={props.for} className="box">
         <span className={`${props.number1}`}></span>
