@@ -1,15 +1,10 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import '../scss/pages/_landing.scss';
 import Logo from '../images/logo_awesome.svg';
-import App from './App';
 
-/*const Landing = (props) => {
-  return (
-    const Landing = (props) => {
-      return (
-              <button className='landing_button' onClick={props.}></button>*/
+
 class Landing extends React.Component {
   render() {
     return (
@@ -26,15 +21,15 @@ class Landing extends React.Component {
               Crea mejores contactos profesionales de forma fácil y cómoda
             </h2>
             <div className='landing_icons_container'>
-              <div class='icon_box'>
+              <div className='icon_box'>
                 <i className='far fa-object-ungroup'></i>
                 <small className='icon_text'>Diseña</small>
               </div>
-              <div class='icon_box'>
+              <div className='icon_box'>
                 <i className='far fa-keyboard'></i>
                 <small className='icon_text'>Rellena</small>
               </div>
-              <div class='icon_box'>
+              <div className='icon_box'>
                 <i className='far fa-share-alt'></i>
                 <small className='icon_text'>Comparte</small>
               </div>

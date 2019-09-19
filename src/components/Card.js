@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Link } from "react-router-dom";
+// import { Route, Switch, Link } from "react-router-dom";
 
 import "../scss/App.scss";
 import Share from "./Share";
@@ -8,6 +8,7 @@ import Form from "./Form";
 import PreviewCard from "./PreviewCard";
 import defaultPicture from "./../images/default.jpg";
 import HeaderPreview from "./HeaderPreview";
+import sendRequest from "../data/dataFromServer";
 
 class Card extends React.Component {
   constructor() {
@@ -24,35 +25,36 @@ class Card extends React.Component {
   }
 
   getInitialState() {
+    const localData = JSON.parse(localStorage.getItem("userData")) || {};
     return {
       openSection: "",
       readyToCreateCard: true,
       cardShare: {
-        link: "https://awesome-profile-card.com?id=A456DF0001",
+        link: "",
         linkDisplay: "none",
         linkTitle: "",
         twitterLink: "https://twitter.com/"
       },
 
-      palette: 1,
+      palette: localData.palette || 1,
       userInputs: {
-        name: "",
-        job: "",
-        phone: "",
-        email: "",
-        linkedin: "",
-        github: ""
+        name: localData.name || "",
+        job: localData.job || "",
+        phone: localData.phone || "",
+        email: localData.email || "",
+        linkedin: localData.linkedin || "",
+        github: localData.github || ""
       },
 
       isDefaultPicture: true,
-      picture: defaultPicture
+      photo: localData.photo || defaultPicture
     };
   }
 
   updateProfilePicture = img => {
     this.setState(() => {
       return {
-        picture: img,
+        photo: img,
         isDefaultPicture: false
       };
     });
@@ -62,30 +64,35 @@ class Card extends React.Component {
     return this.state.readyToCreateCard === true ? "#e17334" : "lightgrey";
   };
 
-  handleCreateCardClick = () => {
-    return this.state.readyToCreateCard === true
-      ? this.setState(() => {
+  handleCreateCardClick = (e) => {
+    e.preventDefault()
+    const localData = JSON.parse(localStorage.getItem("userData"));
+    
+    sendRequest(localData).then(data => {
+      return this.state.readyToCreateCard === true
+        ? this.setState(() => {
           return {
             cardShare: {
-              ...this.state.cardShare,
-              link:
-                "https://awesome-profile-card.com?id=A456DF0001/createdLink",
-              linkDisplay: "flex",
-              linkTitle: "La tarjeta ha sido creada:",
-              twitterLink: "https://twitter.com/"
+          ...this.state.cardShare,
+          link: data,
+          linkDisplay: "flex",
+          linkTitle: "La tarjeta ha sido creada:",
+          twitterLink: `https://twitter.com/intent/tweet?text=Mira mi tarjeta de visita ${data}`
             }
-          };
+          }
         })
-      : null;
+        : null
+    })
   };
 
   handlePaletteClick = event => {
-    const clickedPalette = this.paletteInput.current;
+    // const clickedPalette = this.paletteInput.current;
     this.paletteInput.checked = true;
   };
 
   handleButtonReset() {
-    console.log("holi");
+    console.log('reset')
+    localStorage.removeItem("userData");
     this.setState(this.getInitialState());
   }
 
@@ -115,11 +122,10 @@ class Card extends React.Component {
 
   //save data in LocalStorage
 
-  setLocalStorage = props => {
-    const { email, github, job, linkedin, name, phone } = props.userInputs;
-    const palette = props.palette;
-    const isDefaultPicture = props.isDefaultPicture;
-    const picture = props.picture;
+  setLocalStorage = () => {
+    const { email, github, job, linkedin, name, phone } = this.state.userInputs;
+    const palette = this.state.palette;
+    const photo = this.state.photo;
     const userData = {
       email: email,
       github: github,
@@ -128,8 +134,7 @@ class Card extends React.Component {
       name: name,
       palette: palette,
       phone: phone,
-      isDefaultPicture: isDefaultPicture,
-      picture: picture
+      photo: photo
     };
 
     localStorage.setItem("userData", JSON.stringify(userData));
@@ -140,9 +145,10 @@ class Card extends React.Component {
       return "palette" + this.state.palette;
     };
 
-    this.setLocalStorage(this.state);
+    this.setLocalStorage();
 
     return (
+      
       <div className="app">
         <HeaderPreview />
         <div className="section__container">
@@ -153,6 +159,7 @@ class Card extends React.Component {
               iconsList={this.state.userInputs}
               userInputs={this.state.userInputs}
               selectedPalette={changeSelectedPalette()}
+              picture={this.state.photo}
               deleteData={this.handleButtonReset}
             />
           </div>
@@ -167,7 +174,7 @@ class Card extends React.Component {
                 stateValueInputs={this.state.userInputs}
                 getInputValues={this.getInputValues}
                 isDefaultPicture={this.state.isDefaultPicture}
-                picture={this.state.picture}
+                picture={this.state.photo}
                 updateProfilePicture={this.updateProfilePicture}
               />
               <Share

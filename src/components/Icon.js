@@ -1,7 +1,6 @@
 import React from "react";
 
 const Icon = props => {
-  const { phone, email, likedin, github } = props.iconsList;
   let opacity = "0.5";
 
   const iconOpacity = () => {

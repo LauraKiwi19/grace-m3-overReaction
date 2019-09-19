@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 
 class GetAvatar extends React.Component {
     constructor(props) {
@@ -43,10 +42,10 @@ class GetAvatar extends React.Component {
     }
 }
 
-GetAvatar.propTypes = {
-    isAvatarDefault: PropTypes.bool.isRequired,
-    picture: PropTypes.string.isRequired,
-    updateProfilePicture: PropTypes.func.isRequired
-};
+// GetAvatar.propTypes = {
+//     isAvatarDefault: PropTypes.bool.isRequired,
+//     picture: PropTypes.string.isRequired,
+//     updateProfilePicture: PropTypes.func.isRequired
+// };
 
 export default GetAvatar;
