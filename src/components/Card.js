@@ -1,14 +1,17 @@
 import React from 'react';
 // import { Route, Switch, Link } from "react-router-dom";
 
-import '../scss/App.scss';
-import Share from './Share';
-import Design from './Design';
-import Form from './Form';
-import PreviewCard from './PreviewCard';
-import defaultPicture from './../images/default.jpg';
-import HeaderPreview from './HeaderPreview';
-import sendRequest from '../data/dataFromServer';
+import "../scss/App.scss";
+import Share from "./Share";
+import Design from "./Design";
+import Form from "./Form";
+import PreviewCard from "./PreviewCard";
+import defaultPicture from "./../images/default.jpg";
+import HeaderPreview from "./HeaderPreview";
+import sendRequest from "../data/dataFromServer";
+// import Loading from "./Loading"
+import "../scss/components/_buttons.scss"
+import "../scss/core/_variables.scss"
 
 class Card extends React.Component {
   constructor() {
@@ -82,7 +85,7 @@ class Card extends React.Component {
     return this.state.readyToCreateCard === true ? '#e17334' : 'lightgrey';
   };
 
-  componentDidUpdate(props, state){
+  componentDidUpdate(props, state) {
     this.isReadyToCreateCard()
   }
 
@@ -92,16 +95,16 @@ class Card extends React.Component {
     sendRequest(localData).then(data => {
       return this.state.readyToCreateCard === true
         ? this.setState(() => {
-            return {
-              cardShare: {
-                ...this.state.cardShare,
-                link: data,
-                linkDisplay: 'flex',
-                linkTitle: 'La tarjeta ha sido creada:',
-                twitterLink: `https://twitter.com/intent/tweet?text=Mira mi tarjeta de visita ${data}`
-              }
-            };
-          })
+          return {
+            cardShare: {
+              ...this.state.cardShare,
+              link: data,
+              linkDisplay: 'flex',
+              linkTitle: 'La tarjeta ha sido creada:',
+              twitterLink: `https://twitter.com/intent/tweet?text=Mira mi tarjeta de visita ${data}`
+            }
+          };
+        })
         : null;
     });
   };
@@ -203,6 +206,7 @@ class Card extends React.Component {
                 generatedCard={this.state.cardShare}
               />
             </form>
+
           </div>
         </div>
       </div>
