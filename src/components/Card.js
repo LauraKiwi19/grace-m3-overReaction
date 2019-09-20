@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // import { Route, Switch, Link } from "react-router-dom";
 
 import "../scss/App.scss";
@@ -9,7 +9,7 @@ import PreviewCard from "./PreviewCard";
 import defaultPicture from "./../images/default.jpg";
 import HeaderPreview from "./HeaderPreview";
 import sendRequest from "../data/dataFromServer";
-import Loading from "./Loading"
+// import Loading from "./Loading"
 import "../scss/components/_buttons.scss"
 import "../scss/core/_variables.scss"
 
@@ -28,25 +28,25 @@ class Card extends React.Component {
   }
 
   getInitialState() {
-    const localData = JSON.parse(localStorage.getItem("userData")) || {};
+    const localData = JSON.parse(localStorage.getItem('userData')) || {};
     return {
-      openSection: "",
+      openSection: '',
       readyToCreateCard: true,
       cardShare: {
-        link: "",
-        linkDisplay: "none",
-        linkTitle: "",
-        twitterLink: ""
+        link: '',
+        linkDisplay: 'none',
+        linkTitle: '',
+        twitterLink: ''
       },
 
       palette: localData.palette || 1,
       userInputs: {
-        name: localData.name || "",
-        job: localData.job || "",
-        phone: localData.phone || "",
-        email: localData.email || "",
-        linkedin: localData.linkedin || "",
-        github: localData.github || ""
+        name: localData.name || '',
+        job: localData.job || '',
+        phone: localData.phone || '',
+        email: localData.email || '',
+        linkedin: localData.linkedin || '',
+        github: localData.github || ''
       },
 
       isDefaultPicture: true,
@@ -67,24 +67,31 @@ class Card extends React.Component {
     const { name, job, email, linkedin, github } = this.state.userInputs;
     const { photo, palette } = this.state;
 
-    const readyToCreateCard = !!(name && job && email && linkedin && github && photo && palette);
+    const readyToCreateCard = !!(
+      name &&
+      job &&
+      email &&
+      linkedin &&
+      github &&
+      photo &&
+      palette
+    );
     if (readyToCreateCard !== this.state.readyToCreateCard) {
-      this.setState({ readyToCreateCard: readyToCreateCard })
+      this.setState({ readyToCreateCard: readyToCreateCard });
     }
-  }
+  };
 
   changeShareBtnColor = () => {
-    return this.state.readyToCreateCard === true ? "#e17334" : "lightgrey";
+    return this.state.readyToCreateCard === true ? '#e17334' : 'lightgrey';
   };
 
   componentDidUpdate(props, state) {
     this.isReadyToCreateCard()
-    console.log(this.state);
   }
 
-  handleCreateCardClick = (e) => {
-    e.preventDefault()
-    const localData = JSON.parse(localStorage.getItem("userData"));
+  handleCreateCardClick = e => {
+    e.preventDefault();
+    const localData = JSON.parse(localStorage.getItem('userData'));
     sendRequest(localData).then(data => {
       return this.state.readyToCreateCard === true
         ? this.setState(() => {
@@ -92,14 +99,14 @@ class Card extends React.Component {
             cardShare: {
               ...this.state.cardShare,
               link: data,
-              linkDisplay: "flex",
-              linkTitle: "La tarjeta ha sido creada:",
-              twitterLink: `https://twitter.com/intent/tweet?text=Mira mi tarjeta de visita ${data}`,
+              linkDisplay: 'flex',
+              linkTitle: 'La tarjeta ha sido creada:',
+              twitterLink: `https://twitter.com/intent/tweet?text=Mira mi tarjeta de visita ${data}`
             }
-          }
+          };
         })
-        : null
-    })
+        : null;
+    });
   };
 
   handlePaletteClick = event => {
@@ -107,8 +114,8 @@ class Card extends React.Component {
   };
 
   handleButtonReset() {
-    console.log('reset')
-    localStorage.removeItem("userData");
+    console.log('reset');
+    localStorage.removeItem('userData');
     this.setState(this.getInitialState());
   }
 
@@ -152,19 +159,23 @@ class Card extends React.Component {
       phone: phone,
       photo: photo
     };
-    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem('userData', JSON.stringify(userData));
   };
 
   render() {
+    this.setLocalStorage()
+
     const changeSelectedPalette = () => {
-      return "palette" + this.state.palette;
+      return 'palette' + this.state.palette;
     };
 
+    this.setLocalStorage();
+
     return (
-      <div className="app">
+      <div className='app'>
         <HeaderPreview />
-        <div className="section__container">
-          <div className="section__container__a">
+        <div className='section__container'>
+          <div className='section__container__a'>
             <PreviewCard
               name={this.state.userInputs.name}
               job={this.state.userInputs.job}
@@ -175,8 +186,8 @@ class Card extends React.Component {
               deleteData={this.handleButtonReset}
             />
           </div>
-          <div className="section__container__b">
-            <form className="js-form form">
+          <div className='section__container__b'>
+            <form className='js-form form'>
               <Design
                 getPaletteId={this.getPaletteId}
                 onchange={this.handlePaletteClick}
@@ -185,7 +196,7 @@ class Card extends React.Component {
               <Form
                 stateValueInputs={this.state.userInputs}
                 getInputValues={this.getInputValues}
-                isDefaultPicture={this.state.isDefaultPicture}
+                // isDefaultPicture={this.state.isDefaultPicture}
                 picture={this.state.photo}
                 updateProfilePicture={this.updateProfilePicture}
               />
@@ -194,9 +205,6 @@ class Card extends React.Component {
                 createCard={this.handleCreateCardClick}
                 generatedCard={this.state.cardShare}
               />
-              {/*               <div className="loading_box">
-                <Loading />
-              </div> */}
             </form>
 
           </div>
