@@ -33,7 +33,7 @@ class Card extends React.Component {
         link: "",
         linkDisplay: "none",
         linkTitle: "",
-        twitterLink: "https://twitter.com/"
+        twitterLink: ""
       },
 
       palette: localData.palette || 1,
@@ -60,14 +60,28 @@ class Card extends React.Component {
     });
   };
 
+  isReadyToCreateCard = () => {
+    const {name, job, email, linkedin, github} = this.state.userInputs;
+    const {photo, palette} = this.state;
+
+    const readyToCreateCard = !!(name && job && email && linkedin && github && photo && palette);
+    if (readyToCreateCard !== this.state.readyToCreateCard){
+      this.setState({readyToCreateCard: readyToCreateCard})
+    }
+  }
+
   changeShareBtnColor = () => {
     return this.state.readyToCreateCard === true ? "#e17334" : "lightgrey";
   };
 
+  componentDidUpdate(props, state){
+    this.isReadyToCreateCard()
+    console.log(this.state);
+  }
+  
   handleCreateCardClick = (e) => {
     e.preventDefault()
     const localData = JSON.parse(localStorage.getItem("userData"));
-    
     sendRequest(localData).then(data => {
       return this.state.readyToCreateCard === true
         ? this.setState(() => {
@@ -86,7 +100,6 @@ class Card extends React.Component {
   };
 
   handlePaletteClick = event => {
-    // const clickedPalette = this.paletteInput.current;
     this.paletteInput.checked = true;
   };
 
@@ -136,7 +149,6 @@ class Card extends React.Component {
       phone: phone,
       photo: photo
     };
-
     localStorage.setItem("userData", JSON.stringify(userData));
   };
 
@@ -144,11 +156,8 @@ class Card extends React.Component {
     const changeSelectedPalette = () => {
       return "palette" + this.state.palette;
     };
-
-    this.setLocalStorage();
-
+ 
     return (
-      
       <div className="app">
         <HeaderPreview />
         <div className="section__container">

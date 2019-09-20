@@ -21,8 +21,9 @@ const Share = props => {
         <small className="created_card_small">
           <a
             className="created_card_small"
-            rel="noopener noreferrer"
             href={link}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {link}
           </a>
@@ -31,6 +32,8 @@ const Share = props => {
           className="created_card_button js-button-twitter"
           style={{ display: linkDisplay }}
           href={twitterLink}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <i className="fab fa-twitter"></i>Compartir en Twitter
         </a>
