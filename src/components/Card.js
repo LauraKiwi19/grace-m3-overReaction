@@ -75,7 +75,6 @@ class Card extends React.Component {
   };
 
   componentDidUpdate(props, state){
-    debugger
     this.isReadyToCreateCard()
     console.log(this.state);
   }
