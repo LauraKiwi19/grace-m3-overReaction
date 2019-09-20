@@ -28,7 +28,6 @@ class GetAvatar extends React.Component {
     }
 
     getPreview(picture) {
-        console.log(picture)
         return picture ? { backgroundImage: `url(${picture})` } : {};
     }
 
