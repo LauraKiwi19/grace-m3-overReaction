@@ -75,9 +75,7 @@ class Card extends React.Component {
   };
 
   componentDidUpdate(props, state){
-    debugger
     this.isReadyToCreateCard()
-    console.log(this.state);
   }
   
   handleCreateCardClick = (e) => {
@@ -154,6 +152,8 @@ class Card extends React.Component {
   };
 
   render() {
+    this.setLocalStorage()
+
     const changeSelectedPalette = () => {
       return "palette" + this.state.palette;
     };
@@ -183,7 +183,7 @@ class Card extends React.Component {
               <Form
                 stateValueInputs={this.state.userInputs}
                 getInputValues={this.getInputValues}
-                isDefaultPicture={this.state.isDefaultPicture}
+                // isDefaultPicture={this.state.isDefaultPicture}
                 picture={this.state.photo}
                 updateProfilePicture={this.updateProfilePicture}
               />
