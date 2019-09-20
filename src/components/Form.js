@@ -4,6 +4,7 @@ import Label from "./Label";
 import Input from "./Input";
 import GetAvatar from "./GetAvatar";
 import "../scss/layout/_fillin.scss";
+import PropTypes from "prop-types";
 
 function Form(props) {
   const asterisk = <span className="asterisk">*</span>;
@@ -47,8 +48,18 @@ function Form(props) {
           />
         </div>
         <div className="photo">
-          <Label className="form__item" htmlFor="photo" name='photo' text="Imagen de Perfil" asterisk={asterisk} />
-          <GetAvatar isDefaultPicture={props.isDefaultPicture} picture={props.picture} updateProfilePicture={props.updateProfilePicture} />
+          <Label
+            className="form__item"
+            htmlFor="photo"
+            name="photo"
+            text="Imagen de Perfil"
+            asterisk={asterisk}
+          />
+          <GetAvatar
+            isDefaultPicture={props.isDefaultPicture}
+            picture={props.picture}
+            updateProfilePicture={props.updateProfilePicture}
+          />
         </div>
         <div className="email">
           <Label
@@ -118,5 +129,14 @@ function Form(props) {
     </Collapsible>
   );
 }
-
+Form.propTypes = {
+  stateValueInputs: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    job: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    // phone: PropTypes.number.isRequired,
+    linkedin: PropTypes.string.isRequired,
+    github: PropTypes.string.isRequired
+  })
+};
 export default Form;
