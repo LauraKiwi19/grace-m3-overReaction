@@ -1,3 +1,7 @@
+@import "../core/_variables.scss";
+@import "../core/_typography.scss";
+
+
 .landing_button {
     height: 42px;
     width: 129px;
@@ -43,6 +47,11 @@
     border-radius: 15px;
     border: solid 1px $colorWhite;
     background-color: transparent;
+    transition: 0.3s;
+     &:hover{
+       background-color: white; 
+             box-shadow: 8px 18px 13px -4px rgba(0,0,0,0.25);
+            }
     &--text {
         color: $colorTextMenu;
         font-family: $fontTertiary;
@@ -61,4 +70,47 @@
     margin-left: 10px;
     padding: 6px;
     color: $colorTertiary;
+}
+
+
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:50px;
+}
+    
+.loading > span {
+background-color: #114e4e;
+display: inline-block;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    margin: 0 8px;
+    transform: translate3d(0);
+    animation: bounce 0.8s infinite alternate;
+}
+    
+.loading > span:nth-child(2){
+    background-color:  #e17334;
+    animation-delay: 0.2s;
+    
+    
+}
+.loading > span:nth-child(3){
+    background-color: #a2deaf;
+    animation-delay: 0.4s;
+}
+    
+@keyframes bounce{
+      to {
+        width: 16px;
+        height: 16px;
+        transform: translate3d(0, -16px, 0);
+    }
+}
+
+.loading_box{
+    height: 30px;
 }

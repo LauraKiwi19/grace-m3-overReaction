@@ -9,6 +9,9 @@ import PreviewCard from "./PreviewCard";
 import defaultPicture from "./../images/default.jpg";
 import HeaderPreview from "./HeaderPreview";
 import sendRequest from "../data/dataFromServer";
+import Loading from "./Loading"
+import "../scss/components/_buttons.scss"
+import "../scss/core/_variables.scss"
 
 class Card extends React.Component {
   constructor() {
@@ -61,12 +64,12 @@ class Card extends React.Component {
   };
 
   isReadyToCreateCard = () => {
-    const {name, job, email, linkedin, github} = this.state.userInputs;
-    const {photo, palette} = this.state;
+    const { name, job, email, linkedin, github } = this.state.userInputs;
+    const { photo, palette } = this.state;
 
     const readyToCreateCard = !!(name && job && email && linkedin && github && photo && palette);
-    if (readyToCreateCard !== this.state.readyToCreateCard){
-      this.setState({readyToCreateCard: readyToCreateCard})
+    if (readyToCreateCard !== this.state.readyToCreateCard) {
+      this.setState({ readyToCreateCard: readyToCreateCard })
     }
   }
 
@@ -74,11 +77,11 @@ class Card extends React.Component {
     return this.state.readyToCreateCard === true ? "#e17334" : "lightgrey";
   };
 
-  componentDidUpdate(props, state){
+  componentDidUpdate(props, state) {
     this.isReadyToCreateCard()
     console.log(this.state);
   }
-  
+
   handleCreateCardClick = (e) => {
     e.preventDefault()
     const localData = JSON.parse(localStorage.getItem("userData"));
@@ -87,11 +90,11 @@ class Card extends React.Component {
         ? this.setState(() => {
           return {
             cardShare: {
-          ...this.state.cardShare,
-          link: data,
-          linkDisplay: "flex",
-          linkTitle: "La tarjeta ha sido creada:",
-          twitterLink: `https://twitter.com/intent/tweet?text=Mira mi tarjeta de visita ${data}`
+              ...this.state.cardShare,
+              link: data,
+              linkDisplay: "flex",
+              linkTitle: "La tarjeta ha sido creada:",
+              twitterLink: `https://twitter.com/intent/tweet?text=Mira mi tarjeta de visita ${data}`,
             }
           }
         })
@@ -156,7 +159,7 @@ class Card extends React.Component {
     const changeSelectedPalette = () => {
       return "palette" + this.state.palette;
     };
- 
+
     return (
       <div className="app">
         <HeaderPreview />
@@ -191,7 +194,11 @@ class Card extends React.Component {
                 createCard={this.handleCreateCardClick}
                 generatedCard={this.state.cardShare}
               />
+              {/*               <div className="loading_box">
+                <Loading />
+              </div> */}
             </form>
+
           </div>
         </div>
       </div>
